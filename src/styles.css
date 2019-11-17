@@ -1,1 +1,21 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~bootstrap/dist/css/bootstrap.min.css';
+
+.col-xs-4{
+  display:flex;
+  justify-content:center;
+}
+
+.col-xs-12{
+  display: flex;
+  justify-content: center; 
+}
+
+app-header{
+  background-color:red;
+}
+
+.header{
+  display:flex;
+  justify-content:center;
+}
