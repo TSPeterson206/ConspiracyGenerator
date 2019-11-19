@@ -6,15 +6,10 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class PersonComponent implements OnInit {
 // person=['Alex Jones','Hillary Clinton','Bill Clinton','The Illuminati','The federal government','Conor Mcgregor','Jeff Bezos','Donald Trump','The Magnificent Twelve','The FBI','Michael Jackson','R Kelly','Jay Inslee','Vincent D\'onofrio','Alexander Graham Bell','Our founding father','Captain James Tiberius Kirk'];
-  testPerson='';
-
   @Input() person: string[];
   @Input() tempPerson: string[];
   
-
-
-constructor() { 
-  }
+constructor() {}
 
   ngOnInit() {
   }
