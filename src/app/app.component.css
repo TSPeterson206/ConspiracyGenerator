@@ -1,0 +1,17 @@
+.threeItemsRow{
+  height:50vh;
+}
+
+.buttonsRow{
+  height:20vh;
+  /* display:flex; */
+  /* justify-content:space-evenly; */
+}
+.generateNewRow{
+height:30vh;
+}
+
+.buttonsColumn{
+  display:flex;
+  justify-content:space-around;
+}
