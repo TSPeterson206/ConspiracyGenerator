@@ -1,18 +1,18 @@
 
-<app-header></app-header>
+<!-- <app-header></app-header> -->
 <div class="container">
   
   <div class="row threeItemsRow">
     
     <div class="col-xs-4">
-      <app-person [person]='person' [tempPerson]='tempPerson'></app-person>
+      <app-person [person]='person' [tempPerson]='tempPerson' [personFade]='personFade'></app-person>
       <!-- <input type='text' [(ngModel)]='tempPerson' [textContent]='tempPerson'> -->
     </div>
       <div class="col-xs-4">
-        <app-action [action]='action' [tempAction]='tempAction'></app-action>
+        <app-action [action]='action' [tempAction]='tempAction' [actionFade]='actionFade'></app-action>
       </div>
       <div class="col-xs-4">
-        <app-adverb [adverb]='adverb' [tempAdverb]='tempAdverb'></app-adverb>
+        <app-adverb [adverb]='adverb' [tempAdverb]='tempAdverb' [adverbFade]='adverbFade'></app-adverb>
       </div>
   </div>
   <div class="row buttonsRow">

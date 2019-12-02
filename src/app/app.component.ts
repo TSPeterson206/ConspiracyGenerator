@@ -10,6 +10,10 @@ import {} from './person/person.component'
 })
 export class AppComponent {
   title = 'conspiracyGenerator';
+  personFade=true;
+  adverbFade=true;
+  actionFade=true;
+  
 
   person = ['Alex Jones', 'Hillary Clinton', 'Bill Clinton', 'The Illuminati', 'The federal government', 'Conor Mcgregor', 'Jeff Bezos', 'Donald Trump', 'The Magnificent Twelve', 'The FBI', 'Michael Jackson', 'R Kelly', 'Jay Inslee', 'Vincent D\'onofrio', 'Alexander Graham Bell', 'Our founding father', 'Captain James Tiberius Kirk', 'Justin Timberlake','Lindsey Lohan','Britney Spears','The Dean of UCLA','Jeffrey Tambor','DMX','Wakka Flakka Flame','Russel Simmons','James Franco','Steven Tyler','Joe Perry','Steve Perry','Sarah MacLachlan','Aziz Ansari','Jeffrey Epstein','Mark Cuban','Damond Dash','Barbara Corcoran','Jared Fogle','Theo Von','Brendan Schaub','Carlos Mencia','Jesse Jones','Steve Pool','Fedor Emelianienko','Dante Alighieri','John Grisham','Woody Harrellson','Mathew McConaughey','Danny Glover','Mel Gibson','Frank Sinatra','George Lucas','Childish Gambino','Tupac Shakur','The Notorious B.I.G.','Christina Aguilera','Carson Daily','Dax Shephard','Kirsten Bell','Malcom Gladwell','Ghandi','Ron Swanson','Steve Carrell','Jon Krasinski','Rainn Wilson','John Carpenter','Oprah Winfrey','Tom Brady','Russell Wilson','Aaron Rodgers','Ben Roethlisberger','Brad Pitt','Jennifer Aniston','Mathew Lillard','Courtney Cox','Matt LeBlanc','Matthew Perry','David Schwimmer','Jerry Seinfeld','Jason Alexander','Michael Richards','Adolf Hitler\'s nephew','James Brown','Gwen Stefani','Eddie Vedder','James Hetfield','Metallica','My Chemical Romance','George Lopez','Lars Von Trier','Elvis Presley','Andy Dick','Elon Musk','Bill Gates','Matt Groening','Joseph Smith','The coastal elite','Pennsylvania democrats','Senator Patty Murray','Howard Stern','Rip Torn','Casey Kasem','Engelbert Humperdink','Steve Jobs','Mark Zuckerberg','Howard Schulz','The Walton Family','The executive board of Babies R\' Us','Wolf Blitzer','Stone Phillips','Dan Rather','Kim Kardashian','Charles Barkley','Sandra Bullock','Jason Bateman','David Letterman','Conan O\' Brien','Jay Leno','Jimmy Fallon','James Corden','Anna Paquin','George Romero','The case of The Fast and the Furious','Paul Walker','Steve Wozniak','Jim Parsons','Alex Rodriguez','Barry Bonds','George W Bush','Thomas Jefferson','Kelly Clarkson','Cormac McCarthy','Henry David Thoreau','Michael Crichton','Rupaul','The cast of the musical Cats','Bill W','Edward Snowden','Ned Flanders'];
   tempPerson:string;
@@ -19,31 +23,33 @@ export class AppComponent {
   tempAdverb:string;
 
   generateTheory() {
-    console.log(this.person, this.action,this.adverb)
     const rando1 = Math.floor(Math.random() * 137)
     this.tempPerson = this.person[rando1];
     const rando2 = Math.round(Math.random() * 122);
     this.tempAction = this.action[rando2];
     const rando3 = Math.round(Math.random() * 50);
     this.tempAdverb = this.adverb[rando3];
-    console.log('generatingTheory', rando1, this.tempPerson)
+    this.personFade = !this.personFade;
+    this.adverbFade=!this.adverbFade;
+    this.actionFade=!this.actionFade;
+    console.log(this.personFade);
   }
 
   generatePerson(){
     const rando = Math.floor(Math.random() * 137);
     this.tempPerson=this.person[rando];
-    console.log(rando, this.person)
+    this.personFade = !this.personFade;
   }
 
   generateAction(){
     const rando = Math.floor(Math.random() * 122);
     this.tempAction=this.action[rando];
-    console.log(rando)
+    this.actionFade=!this.actionFade;
   }
 
   generateAdverb(){
     const rando = Math.round(Math.random()*50);
     this.tempAdverb=this.adverb[rando];
-    console.log(rando)
+    this.adverbFade=!this.adverbFade;
   }
 }
