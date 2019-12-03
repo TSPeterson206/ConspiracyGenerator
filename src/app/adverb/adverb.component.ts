@@ -1,6 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, HostBinding } from '@angular/core';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 
+const colors = ['yellow','green','blue','orange','black','red','purple','lightblue','lightgreen'];
 
 @Component({
   selector: 'app-adverb',
@@ -9,14 +10,16 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
   animations:[
     trigger('fadeInAdverb', [
     state('new',style({
-      fontSize:'25px',
-      color:'red',
-      opacity:0.5
+      fontSize:'21px',
+      color:colors[Math.floor(Math.random()*10)],
+      opacity:0.8,
+      textAlign:'center'
     })),
     state('old',style({
-      fontSize:'12px',
-      color:'black',
-      opacity:1.0
+      fontSize:'32px',
+      color:colors[Math.floor(Math.random()*10)],
+      opacity:1.0,
+      textAlign:'center'
     })),
     transition('new => old', [
       animate('1s')

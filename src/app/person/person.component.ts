@@ -2,6 +2,8 @@ import { Component, OnInit, Input, HostBinding } from '@angular/core';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import { getCurrencySymbol } from '@angular/common';
 
+const colors = ['yellow','green','blue','orange','black','red','purple','lightblue','lightgreen'];
+
 @Component({
   selector: 'app-person',
   templateUrl: './person.component.html',
@@ -9,14 +11,16 @@ import { getCurrencySymbol } from '@angular/common';
   animations:[
     trigger('fadeInPerson', [
     state('new',style({
-      fontSize:'25px',
-      color:'red',
-      opacity:0.5
+      fontSize:'21px',
+      color:colors[Math.floor(Math.random()*10)],
+      opacity:0.8,
+      textAlign:'center'
     })),
     state('old',style({
-      fontSize:'12px',
-      color:'black',
-      opacity:1.0
+      fontSize:'32px',
+      color:colors[Math.floor(Math.random()*10)],
+      opacity:1.0,
+      textAlign:'center'
     })),
     transition('new => old', [
       animate('1s')
@@ -27,6 +31,7 @@ import { getCurrencySymbol } from '@angular/common';
   ])
   ]
 })
+
 export class PersonComponent implements OnInit {
 // newState=true;
 
