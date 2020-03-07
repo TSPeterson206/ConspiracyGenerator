@@ -22,5 +22,28 @@ height:30vh;
   opacity: 1;
 }
 
+.container{
+  /* padding-top:30vh; */
+}
+
+.jumbotron{
+  height:30vh;
+  text-align:center;
+}
+
+.jumboText{
+  font-size:10em;
+  font-family: 'Shadows Into Light', cursive;
+}
 
 /* TEXT */
+
+@media (max-width:1200px){
+  .jumboText{
+    font-size:90px;
+  }
+
+  .jumbotron{
+    padding-top:0px;
+  }
+}

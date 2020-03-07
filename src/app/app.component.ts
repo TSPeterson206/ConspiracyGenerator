@@ -1,18 +1,21 @@
-import {
-  Component
-} from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
 import {} from './person/person.component'
+import { HttpClient } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
   title = 'conspiracyGenerator';
   personFade=true;
   adverbFade=true;
   actionFade=true;
+  user:any;
+
+  constructor(private http: HttpClient){}
   
 
   person = ['Alex Jones', 'Hillary Clinton', 'Bill Clinton', 'The Illuminati', 'The federal government', 'Conor Mcgregor', 'Jeff Bezos', 'Donald Trump', 'The Magnificent Twelve', 'The FBI', 'Michael Jackson', 'R Kelly', 'Jay Inslee', 'Vincent D\'onofrio', 'Alexander Graham Bell', 'Our founding father', 'Captain James Tiberius Kirk', 'Justin Timberlake','Lindsey Lohan','Britney Spears','The Dean of UCLA','Jeffrey Tambor','DMX','Wakka Flakka Flame','Russel Simmons','James Franco','Steven Tyler','Joe Perry','Steve Perry','Sarah MacLachlan','Aziz Ansari','Jeffrey Epstein','Mark Cuban','Damond Dash','Barbara Corcoran','Jared Fogle','Theo Von','Brendan Schaub','Carlos Mencia','Jesse Jones','Steve Pool','Fedor Emelianienko','Dante Alighieri','John Grisham','Woody Harrellson','Mathew McConaughey','Danny Glover','Mel Gibson','Frank Sinatra','George Lucas','Childish Gambino','Tupac Shakur','The Notorious B.I.G.','Christina Aguilera','Carson Daily','Dax Shephard','Kirsten Bell','Malcom Gladwell','Ghandi','Ron Swanson','Steve Carrell','Jon Krasinski','Rainn Wilson','John Carpenter','Oprah Winfrey','Tom Brady','Russell Wilson','Aaron Rodgers','Ben Roethlisberger','Brad Pitt','Jennifer Aniston','Mathew Lillard','Courtney Cox','Matt LeBlanc','Matthew Perry','David Schwimmer','Jerry Seinfeld','Jason Alexander','Michael Richards','Adolf Hitler\'s nephew','James Brown','Gwen Stefani','Eddie Vedder','James Hetfield','Metallica','My Chemical Romance','George Lopez','Lars Von Trier','Elvis Presley','Andy Dick','Elon Musk','Bill Gates','Matt Groening','Joseph Smith','The coastal elite','Pennsylvania democrats','Senator Patty Murray','Howard Stern','Rip Torn','Casey Kasem','Engelbert Humperdink','Steve Jobs','Mark Zuckerberg','Howard Schulz','The Walton Family','The executive board of Babies R\' Us','Wolf Blitzer','Stone Phillips','Dan Rather','Kim Kardashian','Charles Barkley','Sandra Bullock','Jason Bateman','David Letterman','Conan O\' Brien','Jay Leno','Jimmy Fallon','James Corden','Anna Paquin','George Romero','The case of The Fast and the Furious','Paul Walker','Steve Wozniak','Jim Parsons','Alex Rodriguez','Barry Bonds','George W Bush','Thomas Jefferson','Kelly Clarkson','Cormac McCarthy','Henry David Thoreau','Michael Crichton','Rupaul','The cast of the musical Cats','Bill W','Edward Snowden','Ned Flanders'];
@@ -21,6 +24,12 @@ export class AppComponent {
   tempAction:string;
   adverb = ['and it will happen again', 'and there are no regrets about it', 'and yet the people are cool with it', 'which is so uncool', 'and it isn\'t the first time', 'and yet the world still turns', 'and that is how it goes', 'and you are next!', 'and also is a flat-eather', 'and is alive and well in Cuba', 'and has never paid federal income tax','and tried to frame the pope for it','and wouldn\'t hesitate to do it again','and has never given it a second thought','and you are just going to sit there?!','and what are you gonna do about it?!','and it is best to just make peace with that','and there is little that you can do','and it might just mean the end of us all','and this is what makes Jeff Bezos sleep soundly','and thus all the world is a stage','and it is the sign of the end of times','and it may bring on the apocalypse','and frankly it was about time','and we never saw this coming','and so it is time to abandon all hope','and it is best to just let it go','and that is tied up in a tidy little package','and I urge you to intervene','and you are powerless to intervene','and knowing is half the battle','and it is a whole thing','so whatcha gonna do about it?','and I will leave you with that information','so marinate on that for a minute','and it wasn\'t a solo job','and they did not act alone','and they sleep just fine at night','and it was probably inevitable','and it was the smallest offense committed','and that should spook you to the core','and I wish I didn\'t know the truth','and you do not know the half of it','and now your eyes are open','and history will repeat itself','and they know that time is a flat circle','and it was not even considered a big deal','and it occurred multiple times','and the truth is still buried','and the public has no clue','and I wish I had thought of it first',];
   tempAdverb:string;
+
+  ngOnInit(){
+    console.log('hitting oninit appcomponent');
+    this.http.get('http://localhost:8000/users/1').subscribe((result)=>{this.user=result})
+    console.log(this.user)
+  }
 
   generateTheory() {
     const rando1 = Math.floor(Math.random() * 137)
@@ -39,6 +48,9 @@ export class AppComponent {
     const rando = Math.floor(Math.random() * 137);
     this.tempPerson=this.person[rando];
     this.personFade = !this.personFade;
+    // this.http.get('http://localhost:8000/users/1').subscribe((result)=>{this.user=result})
+    console.log(this.user);
+
   }
 
   generateAction(){
@@ -51,5 +63,11 @@ export class AppComponent {
     const rando = Math.round(Math.random()*50);
     this.tempAdverb=this.adverb[rando];
     this.adverbFade=!this.adverbFade;
+  }
+
+  toggleData(){
+    if(this.user){
+    console.log('hello',this.user[0].username);
+  }
   }
 }

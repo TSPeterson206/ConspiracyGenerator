@@ -1,5 +1,6 @@
-import { Component, OnInit, Input, HostBinding } from '@angular/core';
+import { Component, Input, AfterViewChecked,HostBinding } from '@angular/core';
 import { trigger, state, style, animate, transition } from '@angular/animations';
+import { HttpClient } from '@angular/common/http';
 import { getCurrencySymbol } from '@angular/common';
 
 const colors = ['yellow','green','blue','orange','black','red','purple','lightblue','lightgreen'];
@@ -32,24 +33,25 @@ const colors = ['yellow','green','blue','orange','black','red','purple','lightbl
   ]
 })
 
-export class PersonComponent implements OnInit {
-// newState=true;
+export class PersonComponent implements AfterViewChecked{// newState=true;
 
 // person=['Alex Jones','Hillary Clinton','Bill Clinton','The Illuminati','The federal government','Conor Mcgregor','Jeff Bezos','Donald Trump','The Magnificent Twelve','The FBI','Michael Jackson','R Kelly','Jay Inslee','Vincent D\'onofrio','Alexander Graham Bell','Our founding father','Captain James Tiberius Kirk'];
   @Input() person: string[];
   @Input() tempPerson: string[];
   @Input() personFade:any;
+  @Input() user:any;
   
-constructor() {}
+constructor(private http:HttpClient) {}
 
-  ngOnInit() {
-  }
+ngAfterViewChecked(){
+  console.log('hitting person afterviewchecked', this.user)
 
-  generatePerson(){
-    const rando = Math.round(Math.random()*10);
-    this.tempPerson=[this.person[rando]];
-    console.log(this.personFade)
-  }
+}
+  // generatePerson(){
+  //   const rando = Math.round(Math.random()*10);
+  //   this.tempPerson=[this.person[rando]];
+  //   console.log(this.personFade)
+  // }
 
   
 }

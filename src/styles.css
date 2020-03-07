@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~bootstrap/dist/css/bootstrap.min.css';
+@import url('https://fonts.googleapis.com/css?family=Shadows+Into+Light&display=swap');
 
 .col-xs-4{
   display:flex;
@@ -9,13 +10,4 @@
 .col-xs-12{
   display: flex;
   justify-content: center; 
-}
-
-app-header{
-  background-color:red;
-}
-
-.header{
-  display:flex;
-  justify-content:center;
 }
