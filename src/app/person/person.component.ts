@@ -40,12 +40,14 @@ export class PersonComponent implements AfterViewChecked{// newState=true;
   @Input() tempPerson: string[];
   @Input() personFade:any;
   @Input() user:any;
+  userNouns:any;
   
 constructor(private http:HttpClient) {}
 
-ngAfterViewChecked(){
-  console.log('hitting person afterviewchecked', this.user)
+ngOnInit(){
+}
 
+ngAfterViewChecked(){
 }
   // generatePerson(){
   //   const rando = Math.round(Math.random()*10);
