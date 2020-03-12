@@ -36,6 +36,12 @@ height:30vh;
   font-family: 'Shadows Into Light', cursive;
 }
 
+.nounDiv,.actionDiv,.descriptorDiv {
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+
 /* TEXT */
 
 @media (max-width:1200px){
