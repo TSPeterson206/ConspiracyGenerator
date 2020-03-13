@@ -58,9 +58,13 @@ export class AppComponent implements OnInit, AfterViewChecked {
   onlyUserVerbsHolder:any;
   onlyUserDescriptorsHolder:any;
 
+  addNounHolder:any;
+  addVerbHolder:any;
+  addDescriptorHolder:any;
+
   ngOnInit() {
     //GET USER
-    this.http.get('http://localhost:8000/users/1').pipe(
+    this.http.get('http://localhost:8000/users/2').pipe(
       tap(result => this.user = result),
       // GET USER NOUNS
       concatMap(user => this.http.get(`http://localhost:8000/nouns/${this.user[0].id}`)),
@@ -145,6 +149,28 @@ export class AppComponent implements OnInit, AfterViewChecked {
     this.tempAdverb = this.descriptors[rando];
     this.adverbFade = !this.adverbFade;
   }
+
+  addNoun(event:any){
+    this.addNounHolder = event.target.value
+    console.log('addnoun content',this.addNounHolder)
+  }
+
+  addNounFinal(){
+    console.log('hitting addnoun', this.user,this.addNounHolder);
+    this.http.post(`http://localhost:8000/nouns/${this.user[0].id}`,{user_id:`${this.user[0].id}`,content:this.addNounHolder})
+    .subscribe(
+      data  => {
+      console.log("POST Request is successful ", data);
+      },
+      error  => {console.log("Error", error);}
+    )
+  }
+
+  addVerb(){}
+
+  addDescriptor(){}
+
+
 
   toggleData() {
     if (this.user) {
