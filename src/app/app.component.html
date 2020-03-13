@@ -1,48 +1,104 @@
-<div class="jumbotron"><p class="jumboText">Conspiracy Generator</p></div>
+<div class="jumbotron">
+  <p class="jumboText">Conspiracy Generator</p>
+</div>
 <div class="container">
-  
+
   <div class="row threeItemsRow">
-    
+
     <div class="col-xs-4">
       <app-person [person]='person' [tempPerson]='tempPerson' [personFade]='personFade' [user]='user'></app-person>
       <!-- <input type='text' [(ngModel)]='tempPerson' [textContent]='tempPerson'> -->
     </div>
-      <div class="col-xs-4">
-        <app-action [action]='action' [tempAction]='tempAction' [actionFade]='actionFade'></app-action>
-      </div>
-      <div class="col-xs-4">
-        <app-adverb [adverb]='adverb' [tempAdverb]='tempAdverb' [adverbFade]='adverbFade'></app-adverb>
-      </div>
+    <div class="col-xs-4">
+      <app-action [action]='action' [tempAction]='tempAction' [actionFade]='actionFade'></app-action>
+    </div>
+    <div class="col-xs-4">
+      <app-adverb [adverb]='adverb' [tempAdverb]='tempAdverb' [adverbFade]='adverbFade'></app-adverb>
+    </div>
   </div>
   <div class="row buttonsRow">
     <div class="col-xs-12 buttonsColumn">
       <div class="nounDiv">
-      <button class='btn btn-danger' (click)="generatePerson()">Generate Person</button>
-      <label>Your Data</label>
-      <input type="checkbox" (change)="toggleData()">
-      <label>Your Data</label>
-      <input type="checkbox" (change)="toggleData()">
-      <label>Your Data</label>
-      <input type="checkbox" (change)="toggleData()">
+        <button class='btn btn-danger' (click)="generatePerson()">Generate Noun</button>
 
-    </div>
-    <div class="actionDiv">
-      <button class='btn btn-warning' (click)="generateAction()">Generate Action</button>
-      <input type="checkbox" (change)="toggleData()">
-      <input type="checkbox" (change)="toggleData()">
-      <input type="checkbox" (change)="toggleData()">
-    </div>
-    <div class="descriptorDiv">
-      <button class='btn btn-success' (click)="generateAdverb()">Generate Adverb</button>
-      <input type="checkbox" (change)="toggleData()">
-      <input type="checkbox" (change)="toggleData()">
-      <input type="checkbox" (change)="toggleData()">
-    </div>
+        <div class="toggleDiv">
+          <label>Preloaded Nouns Only</label>
+          <input id="checkbox" type="checkbox" (change)="toggleData()">
+        </div>
+
+        <div class="toggleDiv">
+          <label>Just Your Nouns</label>
+          <input id="checkbox" type="checkbox" (change)="toggleData()">
+        </div>
+
+        <div class="toggleDiv">
+          <label>Just User Nouns</label>
+          <input id="checkbox" type="checkbox" (change)="toggleData()">
+        </div>
+        <!-- ADD NOUN COLLAPSE -->
+        <p>
+          <button type="button" class="btn btn-outline-primary btn-success" (click)="isCollapsed = !isCollapsed"
+                  [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
+            Add Noun
+          </button>
+        </p>
+        <div id="collapseExample" [ngbCollapse]="isCollapsed">
+          <form>
+            <label for="addNoun"></label>
+            <input class="addNoun" (keyup)="addNoun($event)" type="text">
+            <button (click)="addNounFinal()">+</button>
+          </form>
+          <!-- <div class="card">
+            <div class="card-body">
+              You can collapse this card by clicking Toggle
+            </div>
+          </div> -->
+        </div>
+        <!-- //// -->
+      </div>
+
+      <div class="actionDiv">
+        <button class='btn btn-warning' (click)="generateAction()">Generate Verb</button>
+        <div class="toggleDiv">
+          <label>Preloaded Verbs Only</label>
+          <input id="checkbox" type="checkbox" (change)="toggleData()">
+        </div>
+
+        <div class="toggleDiv">
+          <label>Just Your Verbs</label>
+          <input id="checkbox" type="checkbox" (change)="toggleData()">
+        </div>
+
+        <div class="toggleDiv">
+          <label>Just User Verbs</label>
+          <input id="checkbox" type="checkbox" (change)="toggleData()">
+        </div>
+      </div>
+        
+      
+      <div class="descriptorDiv">
+        <button class='btn btn-success' (click)="generateAdverb()">Generate Descriptor</button>
+        <div class="toggleDiv">
+          <label>Preloaded Descriptors</label>
+          <input id="checkbox" type="checkbox" (change)="toggleData()">
+        </div>
+
+        <div class="toggleDiv">
+          <label>Just Your Descriptors</label>
+          <input id="checkbox" type="checkbox" (change)="toggleData()">
+        </div>
+
+        <div class="toggleDiv">
+          <label>Just User Descriptors</label>
+          <input id="checkbox" type="checkbox" (change)="toggleData()">
+        </div>
+      </div>
+        
     </div>
   </div>
   <div class="row generateNewRow">
     <div class="col-xs-12">
-      <button class="btn btn-primary" (click)="generateTheory()">Generate!</button> 
+      <button class="btn btn-primary" (click)="generateTheory()">Randomize!</button>
     </div>
   </div>
 </div>
