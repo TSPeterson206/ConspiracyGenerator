@@ -62,6 +62,15 @@ export class AppComponent implements OnInit, AfterViewChecked {
   addVerbHolder:any;
   addDescriptorHolder:any;
 
+  // addNounForm:any;
+  // formGroup:any;
+
+  preloadedNouns: Boolean = true;
+  yourNouns: Boolean = true;
+  allUserNouns: boolean = true;
+
+  allNouns:any;
+
   ngOnInit() {
     //GET USER
     this.http.get('http://localhost:8000/users/2').pipe(
@@ -112,13 +121,21 @@ export class AppComponent implements OnInit, AfterViewChecked {
       this.onlyuserDescriptors = this.onlyUserDescriptorsHolder.map(noun => noun.content);
 
       console.log('person', this.nouns, 'action', this.actions, 'descriptor', this.descriptors);
+      this.allNouns = this.nouns.concat(this.stockNouns).concat(this.onlyUserNouns);
+
     });
     console.log('appcomponent oninit', this.user, this.nouns, this.actions, this.descriptors)
+
+
+
+// this.allNouns = this.nouns.concat(this.stockNouns).concat(this.onlyUserNouns);
+console.log('allNouns',this.allNouns);
   }
 
   ngAfterViewChecked() {}
 
   generateTheory() {
+    console.log('hitting generateTheory');
     const rando1 = Math.floor(Math.random() * 137)
     this.tempPerson = this.nouns[rando1];
     const rando2 = Math.round(Math.random() * 122);
@@ -132,38 +149,27 @@ export class AppComponent implements OnInit, AfterViewChecked {
   }
 
   generatePerson() {
-    const rando = Math.floor(Math.random() * 137);
-    this.tempPerson = this.nouns[rando];
+    console.log('hitting generatePerson');
+
+    const rando = Math.floor(Math.random() * this.allNouns.length);
+    this.tempPerson = this.allNouns[rando];
     this.personFade = !this.personFade;
     console.log(this.user);
   }
 
   generateAction() {
+    console.log('hitting generateAction');
+
     const rando = Math.floor(Math.random() * 122);
     this.tempAction = this.actions[rando];
     this.actionFade = !this.actionFade;
   }
 
   generateAdverb() {
+    console.log('hitting generateAdverb');
     const rando = Math.round(Math.random() * this.descriptors.length);
     this.tempAdverb = this.descriptors[rando];
     this.adverbFade = !this.adverbFade;
-  }
-
-  addNoun(event:any){
-    this.addNounHolder = event.target.value
-    console.log('addnoun content',this.addNounHolder)
-  }
-
-  addNounFinal(){
-    console.log('hitting addnoun', this.user,this.addNounHolder);
-    this.http.post(`http://localhost:8000/nouns/${this.user[0].id}`,{user_id:`${this.user[0].id}`,content:this.addNounHolder})
-    .subscribe(
-      data  => {
-      console.log("POST Request is successful ", data);
-      },
-      error  => {console.log("Error", error);}
-    )
   }
 
   addVerb(){}
@@ -172,8 +178,11 @@ export class AppComponent implements OnInit, AfterViewChecked {
 
 
 
-  toggleData() {
+  toggleData(event) {
+    console.log('length', this.allNouns.length)
     if (this.user) {
+      console.log('toggledata', event.target.checked, event)
+      console.log(this.preloadedNouns,this.yourNouns,this.allUserNouns);
       // console.log('hello', this.user[0].username, this.userNouns, this.userVerbs, this.userDescriptors);
     }
   }

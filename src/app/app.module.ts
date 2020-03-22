@@ -10,8 +10,13 @@ import { ActionComponent } from './action/action.component';
 import { AdverbComponent } from './adverb/adverb.component';
 import { HeaderComponent } from './header/header.component';
 
-import { FormsModule } from '@angular/forms';
+// import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AddPersonFormComponent } from './add-person-form/add-person-form.component';
+import { AddVerbFormComponent } from './add-verb-form/add-verb-form.component';
+import { AddAdverbFormComponent } from './add-adverb-form/add-adverb-form.component';
 
 @NgModule({
   declarations: [
@@ -19,12 +24,16 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     PersonComponent,
     ActionComponent,
     AdverbComponent,
-    HeaderComponent
+    HeaderComponent,
+    AddPersonFormComponent,
+    AddVerbFormComponent,
+    AddAdverbFormComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     NgbModule.forRoot()
   ],

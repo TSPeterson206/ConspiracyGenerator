@@ -1,0 +1,13 @@
+<p>
+  <button type="button" class="btn btn-outline-primary btn-success" (click)="isCollapsed = !isCollapsed"
+          [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
+    Add Descriptor
+  </button>
+</p>
+<div id="collapseExample" [ngbCollapse]="isCollapsed">
+  <form [formGroup]="formPayload" (ngSubmit)="addDescriptorFinal(formPayload.value)">
+    <label for="addDescriptor"></label>
+    <input class="addDescriptor" (keyup)="addDescriptor($event)" type="text" formControlName="addDescriptor" required>
+    <button type="submit" (click)="isCollapsed = !isCollapsed">+</button>
+  </form>
+</div>
