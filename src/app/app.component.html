@@ -22,39 +22,40 @@
         <button class='btn btn-danger' (click)="generatePerson()">Generate Noun</button>
 
         <div class="toggleDiv">
-          <label>Preloaded Nouns Only</label>
-          <input id="checkbox" type="checkbox" (change)="toggleData()">
+          <label>Preloaded Nouns</label>
+          <input id="preloadedNounsCheck" 
+          type="checkbox" 
+          [checked]="preloadedNouns"
+          (change)="toggleData($event)"
+          (change)="preloadedNouns =!preloadedNouns"
+          >
         </div>
 
         <div class="toggleDiv">
-          <label>Just Your Nouns</label>
-          <input id="checkbox" type="checkbox" (change)="toggleData()">
+          <label>Your Nouns</label>
+          <input id="yourNounsCheck" 
+          type="checkbox" 
+          [checked]="yourNouns"
+          (change)="toggleData($event)"
+          (change)="yourNouns =!yourNouns"
+
+          >
         </div>
 
         <div class="toggleDiv">
-          <label>Just User Nouns</label>
-          <input id="checkbox" type="checkbox" (change)="toggleData()">
+          <label>All User Nouns</label>
+          <input id="allUserNounsCheck" 
+          type="checkbox" 
+          [checked]="allUserNouns"
+          (change)="toggleData($event)"
+          (change)="allUserNouns =!allUserNouns"
+
+          >
         </div>
         <!-- ADD NOUN COLLAPSE -->
-        <p>
-          <button type="button" class="btn btn-outline-primary btn-success" (click)="isCollapsed = !isCollapsed"
-                  [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
-            Add Noun
-          </button>
-        </p>
-        <div id="collapseExample" [ngbCollapse]="isCollapsed">
-          <form>
-            <label for="addNoun"></label>
-            <input class="addNoun" (keyup)="addNoun($event)" type="text">
-            <button (click)="addNounFinal()">+</button>
-          </form>
-          <!-- <div class="card">
-            <div class="card-body">
-              You can collapse this card by clicking Toggle
-            </div>
-          </div> -->
-        </div>
-        <!-- //// -->
+        <app-add-person-form
+        [user]='user'
+        ></app-add-person-form>
       </div>
 
       <div class="actionDiv">
@@ -73,6 +74,9 @@
           <label>Just User Verbs</label>
           <input id="checkbox" type="checkbox" (change)="toggleData()">
         </div>
+        <app-add-verb-form
+        [user]='user'
+        ></app-add-verb-form>
       </div>
         
       
@@ -92,6 +96,9 @@
           <label>Just User Descriptors</label>
           <input id="checkbox" type="checkbox" (change)="toggleData()">
         </div>
+        <app-add-adverb-form
+        [user]='user'
+        ></app-add-adverb-form>
       </div>
         
     </div>
