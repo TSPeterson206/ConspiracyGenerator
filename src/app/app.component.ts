@@ -1,7 +1,9 @@
 import {
   Component,
   OnInit,
-  AfterViewChecked
+  AfterViewChecked,
+  AfterViewInit,
+  AfterContentInit
 } from '@angular/core';
 import {} from './person/person.component'
 import {
@@ -11,6 +13,9 @@ import {
   tap,
   concatMap
 } from 'rxjs/operators';
+// import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+
 
 
 
@@ -19,7 +24,7 @@ import {
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit, AfterViewChecked {
+export class AppComponent implements OnInit, AfterContentInit, AfterViewChecked {
 
   constructor(private http: HttpClient) {}
 
@@ -69,7 +74,7 @@ export class AppComponent implements OnInit, AfterViewChecked {
   yourNouns: Boolean = true;
   allUserNouns: boolean = true;
 
-  allNouns:any;
+  allNouns:any=[];
 
   ngOnInit() {
     //GET USER
@@ -132,7 +137,13 @@ export class AppComponent implements OnInit, AfterViewChecked {
 console.log('allNouns',this.allNouns);
   }
 
-  ngAfterViewChecked() {}
+  ngAfterContentInit(){
+
+  }
+
+  ngAfterViewChecked() {
+
+  }
 
   generateTheory() {
     console.log('hitting generateTheory');
@@ -176,14 +187,17 @@ console.log('allNouns',this.allNouns);
 
   addDescriptor(){}
 
+  toggleData() {
+    this.allNouns = this.nouns.concat(this.stockNouns).concat(this.onlyUserNouns);
 
+      if(this.preloadedNouns==false){
+        this.allNouns=this.nouns.concat(this.onlyUserNouns);
+        console.log('hitting first condition in toggledata', this.allNouns.length);
 
-  toggleData(event) {
-    console.log('length', this.allNouns.length)
-    if (this.user) {
-      console.log('toggledata', event.target.checked, event)
-      console.log(this.preloadedNouns,this.yourNouns,this.allUserNouns);
-      // console.log('hello', this.user[0].username, this.userNouns, this.userVerbs, this.userDescriptors);
-    }
+      }
+      else {
+        this.allNouns=this.nouns.concat(this.stockNouns).concat(this.onlyUserNouns);
+        console.log('hitting second condition in toggledata', this.allNouns.length);
+      }
   }
 }

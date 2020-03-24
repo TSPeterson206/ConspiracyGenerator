@@ -19,6 +19,11 @@
   <div class="row buttonsRow">
     <div class="col-xs-12 buttonsColumn">
       <div class="nounDiv">
+
+          <div name="allNounsLength" [(ngModel)]="allNouns" ngDefaultControl>{{allNouns.length}}</div>
+
+        <!-- <div>{{allNouns.length}}</div> -->
+        
         <button class='btn btn-danger' (click)="generatePerson()">Generate Noun</button>
 
         <div class="toggleDiv">
@@ -26,8 +31,7 @@
           <input id="preloadedNounsCheck" 
           type="checkbox" 
           [checked]="preloadedNouns"
-          (change)="toggleData($event)"
-          (change)="preloadedNouns =!preloadedNouns"
+          (change)="preloadedNouns = !preloadedNouns; toggleData()"
           >
         </div>
 
@@ -37,7 +41,7 @@
           type="checkbox" 
           [checked]="yourNouns"
           (change)="toggleData($event)"
-          (change)="yourNouns =!yourNouns"
+          (change)="yourNouns = !yourNouns"
 
           >
         </div>
@@ -55,6 +59,7 @@
         <!-- ADD NOUN COLLAPSE -->
         <app-add-person-form
         [user]='user'
+        [(ngModel)]='allNouns'
         ></app-add-person-form>
       </div>
 
