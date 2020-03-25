@@ -4,7 +4,7 @@
     Add Verb
   </button>
 </p>
-<div id="collapseExample" [ngbCollapse]="isCollapsed">
+<div id="collapseExample" [ngbCollapse]="!isCollapsed">
   <form  class="form-control" [formGroup]="formPayload" (ngSubmit)="addVerbFinal(formPayload.value)">
     <label for="addVerb"></label>
     <input class="addVerb" (keyup)="addVerb($event)" type="text" formControlName="addVerb" required>

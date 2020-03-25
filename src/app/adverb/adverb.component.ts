@@ -32,7 +32,7 @@ const colors = ['yellow','green','blue','orange','black','red','purple','lightbl
 })
 export class AdverbComponent implements OnInit {
 
-  @Input() adverb: Array<string>;
+  // @Input() adverb: Array<string>;
   @Input() tempAdverb: string;
   @Input() adverbFade:any;
 
@@ -43,7 +43,7 @@ constructor() { }
 
   generateAdverb(){
     const rando = Math.round(Math.random()*10);
-    this.tempAdverb=this.adverb[rando];
+    // this.tempAdverb=this.adverb[rando];
     console.log(rando)
   }
 

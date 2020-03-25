@@ -32,7 +32,7 @@ const colors = ['yellow','green','blue','orange','black','red','purple','lightbl
 })
 export class ActionComponent implements OnInit {
 
-  @Input() action: Array<string>;
+  // @Input() action: Array<string>;
   @Input() tempAction: string;
   @Input() actionFade:any;
 
@@ -43,7 +43,7 @@ constructor() { }
 
   generateAction(){
     const rando = Math.round(Math.random()*10);
-    this.tempAction=this.action[rando];
+    // this.tempAction=this.action[rando];
     console.log(rando)
   }
 

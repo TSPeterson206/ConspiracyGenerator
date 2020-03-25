@@ -1,4 +1,4 @@
-import { Component, Input, AfterViewChecked,HostBinding } from '@angular/core';
+import { Component, Input, OnInit,AfterViewChecked,HostBinding } from '@angular/core';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import { HttpClient } from '@angular/common/http';
 import { getCurrencySymbol } from '@angular/common';
@@ -33,11 +33,9 @@ const colors = ['yellow','green','blue','orange','black','red','purple','lightbl
   ]
 })
 
-export class PersonComponent implements AfterViewChecked{// newState=true;
+export class PersonComponent implements OnInit{
 
-// person=['Alex Jones','Hillary Clinton','Bill Clinton','The Illuminati','The federal government','Conor Mcgregor','Jeff Bezos','Donald Trump','The Magnificent Twelve','The FBI','Michael Jackson','R Kelly','Jay Inslee','Vincent D\'onofrio','Alexander Graham Bell','Our founding father','Captain James Tiberius Kirk'];
-  @Input() person: string[];
-  @Input() tempPerson: string[];
+  @Input() tempPerson: string;
   @Input() personFade:any;
   @Input() user:any;
   userNouns:any;
@@ -46,14 +44,5 @@ constructor(private http:HttpClient) {}
 
 ngOnInit(){
 }
-
-ngAfterViewChecked(){
-}
-  // generatePerson(){
-  //   const rando = Math.round(Math.random()*10);
-  //   this.tempPerson=[this.person[rando]];
-  //   console.log(this.personFade)
-  // }
-
   
 }

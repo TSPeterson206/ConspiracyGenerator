@@ -6,14 +6,13 @@
   <div class="row threeItemsRow">
 
     <div class="col-xs-4">
-      <app-person [person]='person' [tempPerson]='tempPerson' [personFade]='personFade' [user]='user'></app-person>
-      <!-- <input type='text' [(ngModel)]='tempPerson' [textContent]='tempPerson'> -->
+      <app-person [tempPerson]='tempPerson' [personFade]='personFade' [user]='user'></app-person>
     </div>
     <div class="col-xs-4">
-      <app-action [action]='action' [tempAction]='tempAction' [actionFade]='actionFade'></app-action>
+      <app-action [tempAction]='tempAction' [actionFade]='actionFade'></app-action>
     </div>
     <div class="col-xs-4">
-      <app-adverb [adverb]='adverb' [tempAdverb]='tempAdverb' [adverbFade]='adverbFade'></app-adverb>
+      <app-adverb [tempAdverb]='tempAdverb' [adverbFade]='adverbFade'></app-adverb>
     </div>
   </div>
   <div class="row buttonsRow">
@@ -23,15 +22,15 @@
           <div name="allNounsLength" [(ngModel)]="allNouns" ngDefaultControl>{{allNouns.length}}</div>
 
         <!-- <div>{{allNouns.length}}</div> -->
-        
+
         <button class='btn btn-danger' (click)="generatePerson()">Generate Noun</button>
 
         <div class="toggleDiv">
           <label>Preloaded Nouns</label>
           <input id="preloadedNounsCheck" 
           type="checkbox" 
-          [checked]="preloadedNouns"
-          (change)="preloadedNouns = !preloadedNouns; toggleData()"
+          [checked]="nounBooleans[0]"
+          (change)="nounBooleans[0] = !nounBooleans[0]; toggleData('nouns')"
           >
         </div>
 
@@ -39,10 +38,8 @@
           <label>Your Nouns</label>
           <input id="yourNounsCheck" 
           type="checkbox" 
-          [checked]="yourNouns"
-          (change)="toggleData($event)"
-          (change)="yourNouns = !yourNouns"
-
+          [checked]="nounBooleans[1]"
+          (change)="nounBooleans[1] = !nounBooleans[1]; toggleData('nouns')"
           >
         </div>
 
@@ -50,10 +47,8 @@
           <label>All User Nouns</label>
           <input id="allUserNounsCheck" 
           type="checkbox" 
-          [checked]="allUserNouns"
-          (change)="toggleData($event)"
-          (change)="allUserNouns =!allUserNouns"
-
+          [checked]="nounBooleans[2]"
+          (change)="nounBooleans[2] =!nounBooleans[2]; toggleData('nouns')"
           >
         </div>
         <!-- ADD NOUN COLLAPSE -->
@@ -64,20 +59,36 @@
       </div>
 
       <div class="actionDiv">
+
+          <div name="allVerbsLength" [(ngModel)]="allVerbs" ngDefaultControl>{{allVerbs.length}}</div>
+
         <button class='btn btn-warning' (click)="generateAction()">Generate Verb</button>
+
         <div class="toggleDiv">
           <label>Preloaded Verbs Only</label>
-          <input id="checkbox" type="checkbox" (change)="toggleData()">
+          <input id="checkbox"
+           type="checkbox"
+           [checked]="verbBooleans[0]"
+          (change)="verbBooleans[0] = !verbBooleans[0]; toggleData('verbs')"
+            >
         </div>
 
         <div class="toggleDiv">
           <label>Just Your Verbs</label>
-          <input id="checkbox" type="checkbox" (change)="toggleData()">
+          <input id="checkbox"
+           type="checkbox"
+           [checked]="verbBooleans[1]"
+           (change)="verbBooleans[1] = !verbBooleans[1]; toggleData('verbs')"
+            >
         </div>
 
         <div class="toggleDiv">
           <label>Just User Verbs</label>
-          <input id="checkbox" type="checkbox" (change)="toggleData()">
+          <input id="checkbox"
+           type="checkbox"
+           [checked]="verbBooleans[2]"
+           (change)="verbBooleans[2] = !verbBooleans[2]; toggleData('verbs')"
+            >
         </div>
         <app-add-verb-form
         [user]='user'
@@ -86,20 +97,35 @@
         
       
       <div class="descriptorDiv">
+
+          <div name="allDescriptorsLength" [(ngModel)]="allDescriptors" ngDefaultControl>{{allDescriptors.length}}</div>
+
         <button class='btn btn-success' (click)="generateAdverb()">Generate Descriptor</button>
         <div class="toggleDiv">
           <label>Preloaded Descriptors</label>
-          <input id="checkbox" type="checkbox" (change)="toggleData()">
+          <input id="checkbox"
+           type="checkbox"
+           [checked]="descriptorBooleans[0]" 
+           (change)="descriptorBooleans[0] = !descriptorBooleans[0] ;toggleData('descriptors')"
+           >
         </div>
 
         <div class="toggleDiv">
           <label>Just Your Descriptors</label>
-          <input id="checkbox" type="checkbox" (change)="toggleData()">
+          <input id="checkbox"
+           type="checkbox"
+           [checked]="descriptorBooleans[1]" 
+           (change)="descriptorBooleans[1] = !descriptorBooleans[1] ;toggleData('descriptors')"
+            >
         </div>
 
         <div class="toggleDiv">
           <label>Just User Descriptors</label>
-          <input id="checkbox" type="checkbox" (change)="toggleData()">
+          <input id="checkbox"
+           type="checkbox"
+           [checked]="descriptorBooleans[2]" 
+           (change)="descriptorBooleans[2] = !descriptorBooleans[2] ;toggleData('descriptors')"
+            >
         </div>
         <app-add-adverb-form
         [user]='user'

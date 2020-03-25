@@ -19,6 +19,9 @@ export class AddPersonFormComponent implements OnInit {
   addVerbHolder:any;
   addDescriptorHolder:any;
 
+  isCollapsed:Boolean;
+
+
   constructor(
     private formBuilder: FormBuilder,
     private http: HttpClient
@@ -26,6 +29,8 @@ export class AddPersonFormComponent implements OnInit {
     this.formPayload = this.formBuilder.group({
       addNoun:''
     });
+
+    // this.isCollapsed=true;
   }
 
   ngOnInit() {

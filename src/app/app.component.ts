@@ -13,11 +13,6 @@ import {
   tap,
   concatMap
 } from 'rxjs/operators';
-// import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
-
-
-
 
 @Component({
   selector: 'app-root',
@@ -26,18 +21,18 @@ import {
 })
 export class AppComponent implements OnInit, AfterContentInit, AfterViewChecked {
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+  }
 
   title = 'conspiracyGenerator';
   personFade = true;
   adverbFade = true;
   actionFade = true;
   user: any;
-  //contents:any;
 
-  nouns: any;
-  actions: any;
-  descriptors: any;
+  userNouns: any;
+  userActions: any;
+  userDescriptors: any;
 
   userNounsHolder: any;
   userVerbsHolder: any;
@@ -57,7 +52,7 @@ export class AppComponent implements OnInit, AfterContentInit, AfterViewChecked 
 
   onlyUserNouns:any;
   onlyUserVerbs:any;
-  onlyuserDescriptors:any;
+  onlyUserDescriptors:any;
 
   onlyUserNounsHolder:any;
   onlyUserVerbsHolder:any;
@@ -67,14 +62,13 @@ export class AppComponent implements OnInit, AfterContentInit, AfterViewChecked 
   addVerbHolder:any;
   addDescriptorHolder:any;
 
-  // addNounForm:any;
-  // formGroup:any;
-
-  preloadedNouns: Boolean = true;
-  yourNouns: Boolean = true;
-  allUserNouns: boolean = true;
+  nounBooleans:any[]=[true,true,true];
+  verbBooleans:any[]=[true,true,true];
+  descriptorBooleans:any[]=[true,true,true];
 
   allNouns:any=[];
+  allVerbs:any=[];
+  allDescriptors:any=[];
 
   ngOnInit() {
     //GET USER
@@ -101,7 +95,7 @@ export class AppComponent implements OnInit, AfterContentInit, AfterViewChecked 
       tap(result => this.stockDescriptorsHolder = result),
 
       // GET ONLY USER NOUNS
-      concatMap(descriptor => this.http.get(`http://localhost:8000/nouns/1/users`)),
+      concatMap(descriptor => this.http.get(`http://localhost:8000/nouns/justUser/${this.user[0].id}`)),
       tap(result => this.onlyUserNounsHolder = result),
       // GET ONLY USER VERBS
       concatMap(descriptor => this.http.get(`http://localhost:8000/verbs/1/users`)),
@@ -113,9 +107,9 @@ export class AppComponent implements OnInit, AfterContentInit, AfterViewChecked 
 
     ).subscribe(() => {
       // USER NOUNS,ACTIONS AND DESCRIPTORS
-      this.nouns = this.userNounsHolder.map(noun => noun.content);
-      this.actions = this.userVerbsHolder.map(verb => verb.content);
-      this.descriptors = this.userDescriptorsHolder.map(descriptor => descriptor.content);
+      this.userNouns = this.userNounsHolder.map(noun => noun.content);
+      this.userActions = this.userVerbsHolder.map(verb => verb.content);
+      this.userDescriptors = this.userDescriptorsHolder.map(descriptor => descriptor.content);
       //STOCK NOUNS,ACTIONS AND DESCRIPTORS
       this.stockNouns = this.stockNounsHolder.map(noun => noun.content);
       this.stockVerbs = this.stockVerbsHolder.map(noun => noun.content);
@@ -123,18 +117,15 @@ export class AppComponent implements OnInit, AfterContentInit, AfterViewChecked 
       //ONLY USERS NOUNS,ACTIONS AND DESCRIPTORS
       this.onlyUserNouns = this.onlyUserNounsHolder.map(noun => noun.content);
       this.onlyUserVerbs = this.onlyUserVerbsHolder.map(noun => noun.content);
-      this.onlyuserDescriptors = this.onlyUserDescriptorsHolder.map(noun => noun.content);
+      this.onlyUserDescriptors = this.onlyUserDescriptorsHolder.map(noun => noun.content);
 
-      console.log('person', this.nouns, 'action', this.actions, 'descriptor', this.descriptors);
-      this.allNouns = this.nouns.concat(this.stockNouns).concat(this.onlyUserNouns);
-
+      //All three default to loaded with the below values and checkboxes checked 
+      this.allNouns = this.userNouns.concat(this.stockNouns).concat(this.onlyUserNouns);
+      this.allVerbs = this.userActions.concat(this.stockVerbs).concat(this.onlyUserVerbs);
+      this.allDescriptors = this.userDescriptors.concat(this.stockDescriptors).concat(this.onlyUserDescriptors);
     });
-    console.log('appcomponent oninit', this.user, this.nouns, this.actions, this.descriptors)
 
 
-
-// this.allNouns = this.nouns.concat(this.stockNouns).concat(this.onlyUserNouns);
-console.log('allNouns',this.allNouns);
   }
 
   ngAfterContentInit(){
@@ -147,12 +138,12 @@ console.log('allNouns',this.allNouns);
 
   generateTheory() {
     console.log('hitting generateTheory');
-    const rando1 = Math.floor(Math.random() * 137)
-    this.tempPerson = this.nouns[rando1];
-    const rando2 = Math.round(Math.random() * 122);
-    this.tempAction = this.actions[rando2];
-    const rando3 = Math.round(Math.random() * 50);
-    this.tempAdverb = this.descriptors[rando3];
+    const rando1 = Math.floor(Math.random() * this.allNouns.length)
+    this.tempPerson = this.allNouns[rando1];
+    const rando2 = Math.round(Math.random() * this.allVerbs.length);
+    this.tempAction = this.allVerbs[rando2];
+    const rando3 = Math.round(Math.random() * this.allDescriptors.length);
+    this.tempAdverb = this.allDescriptors[rando3];
     this.personFade = !this.personFade;
     this.adverbFade = !this.adverbFade;
     this.actionFade = !this.actionFade;
@@ -160,26 +151,23 @@ console.log('allNouns',this.allNouns);
   }
 
   generatePerson() {
-    console.log('hitting generatePerson');
-
     const rando = Math.floor(Math.random() * this.allNouns.length);
+    console.log('hitting generatePerson', rando, this.allNouns.length, this.allNouns[rando]);
     this.tempPerson = this.allNouns[rando];
     this.personFade = !this.personFade;
-    console.log(this.user);
   }
 
   generateAction() {
-    console.log('hitting generateAction');
-
-    const rando = Math.floor(Math.random() * 122);
-    this.tempAction = this.actions[rando];
+    const rando = Math.floor(Math.random() * this.allVerbs.length);
+    console.log('hitting generateAction', rando, this.allVerbs.length, this.allVerbs[rando]);
+    this.tempAction = this.allVerbs[rando];
     this.actionFade = !this.actionFade;
   }
 
   generateAdverb() {
-    console.log('hitting generateAdverb');
-    const rando = Math.round(Math.random() * this.descriptors.length);
-    this.tempAdverb = this.descriptors[rando];
+    const rando = Math.round(Math.random() * this.allDescriptors.length);
+    console.log('hitting generateAdverb', rando, this.allDescriptors.length, this.allDescriptors[rando]);
+    this.tempAdverb = this.allDescriptors[rando];
     this.adverbFade = !this.adverbFade;
   }
 
@@ -187,17 +175,45 @@ console.log('allNouns',this.allNouns);
 
   addDescriptor(){}
 
-  toggleData() {
-    this.allNouns = this.nouns.concat(this.stockNouns).concat(this.onlyUserNouns);
+  toggleData(value) {
+if(value==='nouns'){
+  console.log('hitting toggledata nouns');
+    let nounpre=[];
+    let nounuser=[];
+    let nounalluser=[];
 
-      if(this.preloadedNouns==false){
-        this.allNouns=this.nouns.concat(this.onlyUserNouns);
-        console.log('hitting first condition in toggledata', this.allNouns.length);
+    this.nounBooleans[0] ? nounpre = this.stockNouns:null;
+    this.nounBooleans[1] ? nounuser = this.userNouns:null;
+    this.nounBooleans[2] ? nounalluser = this.onlyUserNouns : null;
+    this.allNouns = nounpre.concat(nounuser).concat(nounalluser);
+}
 
-      }
-      else {
-        this.allNouns=this.nouns.concat(this.stockNouns).concat(this.onlyUserNouns);
-        console.log('hitting second condition in toggledata', this.allNouns.length);
-      }
+if(value==='verbs'){
+  console.log('hitting toggledata verbs');
+
+  let verbpre=[];
+  let verbuser=[];
+  let verballuser=[];
+
+  this.verbBooleans[0] ? verbpre = this.stockVerbs:null;
+  this.verbBooleans[1] ? verbuser = this.userActions:null;
+  this.verbBooleans[2] ? verballuser = this.onlyUserVerbs : null;
+  this.allVerbs = verbpre.concat(verbuser).concat(verballuser);
+}
+
+if(value==='descriptors'){
+  console.log('hitting toggledata descriptors');
+
+  let descriptorpre=[];
+  let descriptoruser=[];
+  let descriptoralluser=[];
+
+  this.descriptorBooleans[0] ? descriptorpre = this.stockDescriptors:null;
+  this.descriptorBooleans[1] ? descriptoruser = this.userDescriptors:null;
+  this.descriptorBooleans[2] ? descriptoralluser = this.onlyUserDescriptors : null;
+  this.allDescriptors = descriptorpre.concat(descriptoruser).concat(descriptoralluser);
+}
+
+
   }
 }
