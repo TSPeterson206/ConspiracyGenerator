@@ -5,9 +5,9 @@
   </button>
 </p>
 <div id="collapseExample" [ngbCollapse]="!isCollapsed">
-  <form [formGroup]="formPayload" (ngSubmit)="addDescriptorFinal(formPayload.value)">
+  <form [formGroup]="formPayload" (ngSubmit)="addDescriptorFinal(formPayload.value);isCollapsed = !isCollapsed">
     <label for="addDescriptor"></label>
     <input class="addDescriptor" (keyup)="addDescriptor($event)" type="text" formControlName="addDescriptor" required>
-    <button type="submit" (click)="isCollapsed = !isCollapsed">+</button>
+    <button type="submit">+</button>
   </form>
 </div>

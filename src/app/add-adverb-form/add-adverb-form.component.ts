@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import {
   HttpClient
@@ -16,6 +16,8 @@ export class AddAdverbFormComponent implements OnInit {
 
   formPayload:any;
   addDescriptorHolder:any;
+
+  @Output() formOut: EventEmitter<any> = new EventEmitter();
 
   constructor(
     private formBuilder: FormBuilder,
@@ -43,8 +45,8 @@ export class AddAdverbFormComponent implements OnInit {
       },
       error  => {console.log("Error", error);}
     )
+    this.formOut.emit(this.addDescriptorHolder);
     this.formPayload.reset();
-
   }
 
 }

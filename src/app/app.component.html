@@ -55,6 +55,7 @@
         <app-add-person-form
         [user]='user'
         [(ngModel)]='allNouns'
+        (formOut)="onReceiveNoun($event, 'nouns')"
         ></app-add-person-form>
       </div>
 
@@ -92,6 +93,8 @@
         </div>
         <app-add-verb-form
         [user]='user'
+        [(ngModel)]='allVerbs'
+        (formOut)="onReceiveVerb($event,'verbs')"
         ></app-add-verb-form>
       </div>
         
@@ -129,6 +132,8 @@
         </div>
         <app-add-adverb-form
         [user]='user'
+        [(ngModel)]='allDescriptors'
+        (formOut)="onReceiveDescriptor($event,'descriptors')"
         ></app-add-adverb-form>
       </div>
         

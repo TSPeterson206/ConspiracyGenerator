@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import {
   HttpClient
@@ -16,11 +16,8 @@ export class AddPersonFormComponent implements OnInit {
 
   formPayload:any;
   addNounHolder:any;
-  addVerbHolder:any;
-  addDescriptorHolder:any;
 
-  isCollapsed:Boolean;
-
+  @Output() formOut: EventEmitter<any> = new EventEmitter();
 
   constructor(
     private formBuilder: FormBuilder,
@@ -29,8 +26,6 @@ export class AddPersonFormComponent implements OnInit {
     this.formPayload = this.formBuilder.group({
       addNoun:''
     });
-
-    // this.isCollapsed=true;
   }
 
   ngOnInit() {
@@ -50,8 +45,8 @@ export class AddPersonFormComponent implements OnInit {
       },
       error  => {console.log("Error", error);}
     )
+    this.formOut.emit(this.addNounHolder);
     this.formPayload.reset();
-
   }
 
 }

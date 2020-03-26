@@ -98,10 +98,10 @@ export class AppComponent implements OnInit, AfterContentInit, AfterViewChecked 
       concatMap(descriptor => this.http.get(`http://localhost:8000/nouns/justUser/${this.user[0].id}`)),
       tap(result => this.onlyUserNounsHolder = result),
       // GET ONLY USER VERBS
-      concatMap(descriptor => this.http.get(`http://localhost:8000/verbs/1/users`)),
+      concatMap(descriptor => this.http.get(`http://localhost:8000/verbs/justUser/${this.user[0].id}`)),
       tap(result => this.onlyUserVerbsHolder = result),
       // GET ONLY USER DESCRIPTORS
-      concatMap(descriptor => this.http.get(`http://localhost:8000/descriptors/1/users`)),
+      concatMap(descriptor => this.http.get(`http://localhost:8000/descriptors/justUser/${this.user[0].id}`)),
       tap(result => this.onlyUserDescriptorsHolder = result),
 
 
@@ -216,4 +216,26 @@ if(value==='descriptors'){
 
 
   }
+
+onReceiveNoun(value, category){
+  this.tempPerson=value;
+  console.log('hitting onReceiveNoun',value, category);
+  this.userNouns.push(value);
+  this.toggleData(category)
+}
+
+onReceiveVerb(value, category){
+  this.tempAction=value;
+  console.log('hitting onReceiveVerb',value, category);
+  this.userActions.push(value);
+  this.toggleData(category)
+}
+
+onReceiveDescriptor(value, category){
+  this.tempAdverb=value;
+  console.log('hitting onReceiveDescriptor',value, category);
+  this.userDescriptors.push(value);
+  this.toggleData(category)
+}
+
 }

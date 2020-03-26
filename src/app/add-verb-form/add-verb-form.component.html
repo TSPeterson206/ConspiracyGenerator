@@ -5,9 +5,9 @@
   </button>
 </p>
 <div id="collapseExample" [ngbCollapse]="!isCollapsed">
-  <form  class="form-control" [formGroup]="formPayload" (ngSubmit)="addVerbFinal(formPayload.value)">
+  <form  class="form-control" [formGroup]="formPayload" (ngSubmit)="addVerbFinal(formPayload.value);isCollapsed = !isCollapsed">
     <label for="addVerb"></label>
     <input class="addVerb" (keyup)="addVerb($event)" type="text" formControlName="addVerb" required>
-    <button type="submit" (click)="isCollapsed = !isCollapsed">+</button>
+    <button type="submit">+</button>
   </form>
 </div>
