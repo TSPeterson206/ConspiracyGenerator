@@ -3,7 +3,8 @@ import {
   OnInit,
   AfterViewChecked,
   AfterViewInit,
-  AfterContentInit
+  AfterContentInit,
+  HostBinding
 } from '@angular/core';
 import {} from './person/person.component'
 import {
@@ -13,6 +14,8 @@ import {
   tap,
   concatMap
 } from 'rxjs/operators';
+
+// @Directive({selector: '[ngModel]'})
 
 @Component({
   selector: 'app-root',
