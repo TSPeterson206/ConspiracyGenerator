@@ -13,13 +13,13 @@ const colors = ['yellow','green','blue','orange','black','red','purple','lightbl
     trigger('fadeInPerson', [
     state('new',style({
       fontSize:'21px',
-      color:colors[Math.floor(Math.random()*10)],
+      color:colors[Math.floor(Math.random()*colors.length)],
       opacity:0.8,
       textAlign:'center'
     })),
     state('old',style({
       fontSize:'32px',
-      color:colors[Math.floor(Math.random()*10)],
+      color:colors[Math.floor(Math.random()*colors.length)],
       opacity:1.0,
       textAlign:'center'
     })),

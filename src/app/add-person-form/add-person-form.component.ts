@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormControl } from '@angular/forms';
 import {
   HttpClient
 } from '@angular/common/http';
@@ -16,6 +16,9 @@ export class AddPersonFormComponent implements OnInit {
 
   formPayload:any;
   addNounHolder:any;
+  allNouns:any;
+
+  control: FormControl;
 
   @Output() formOut: EventEmitter<any> = new EventEmitter();
 

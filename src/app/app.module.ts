@@ -5,6 +5,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
+import { ModalModule } from './_modal';
+
 import { AppComponent } from './app.component';
 import { PersonComponent } from './person/person.component';
 import { ActionComponent } from './action/action.component';
@@ -25,7 +27,7 @@ import { AddAdverbFormComponent } from './add-adverb-form/add-adverb-form.compon
     HeaderComponent,
     AddPersonFormComponent,
     AddVerbFormComponent,
-    AddAdverbFormComponent
+    AddAdverbFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -33,6 +35,7 @@ import { AddAdverbFormComponent } from './add-adverb-form/add-adverb-form.compon
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    ModalModule,
     NgbModule.forRoot()
   ],
   providers: [],

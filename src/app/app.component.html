@@ -20,6 +20,8 @@
       <div class="nounDiv">
 
           <div name="allNounsLength" [(ngModel)]="allNouns" ngDefaultControl>{{allNouns.length}}</div>
+          <!-- <p>{{allNouns.length}}</p> -->
+          <!-- <span>{{allNouns.length}}</span> -->
 
         <!-- <div>{{allNouns.length}}</div> -->
 
@@ -61,7 +63,7 @@
 
       <div class="actionDiv">
 
-          <div name="allVerbsLength" [(ngModel)]="allVerbs" ngDefaultControl>{{allVerbs.length}}</div>
+          <div name="allVerbsLength"  [(ngModel)]="allVerbs" ngDefaultControl>{{allVerbs.length}}</div>
 
         <button class='btn btn-warning' (click)="generateAction()">Generate Verb</button>
 
@@ -144,4 +146,32 @@
       <button class="btn btn-primary" (click)="generateTheory()">Randomize!</button>
     </div>
   </div>
+
+  <div>
+    <h1>Home</h1>
+    <p>{{bodyText}}</p>
+    <button (click)="openModal('custom-modal-1')">Open Modal 1</button>
+    <button (click)="openModal('custom-modal-2')">Open Modal 2</button>
+    <button (click)="mapNouns(); openModal('custom-modal-3')">Open Modal 3</button>
+
+</div>
+
+<jw-modal id="custom-modal-1">
+    <h1>A Custom Modal!</h1>
+    <p>Home page text: <input type="text" [(ngModel)]="bodyText" /></p>
+    <button (click)="closeModal('custom-modal-1');">Close</button>
+</jw-modal>
+
+<jw-modal id="custom-modal-2">
+    <h1 style="height:250px">A Tall Custom Modal!</h1>
+    <button (click)="closeModal('custom-modal-2');">Close</button>
+</jw-modal>
+
+<jw-modal id="custom-modal-3">
+  <h1 style="height:500px">A Tall Custom Modal!</h1>
+  <p>{{allNouns}}</p>
+
+  <button (click)="closeModal('custom-modal-3');">Close</button>
+</jw-modal>
+
 </div>

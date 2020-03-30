@@ -14,8 +14,14 @@ import {
   tap,
   concatMap
 } from 'rxjs/operators';
+///
+import { FormBuilder, FormControl } from '@angular/forms';
+///
 
 // @Directive({selector: '[ngModel]'})
+
+import { ModalService } from './_modal';
+
 
 @Component({
   selector: 'app-root',
@@ -24,8 +30,10 @@ import {
 })
 export class AppComponent implements OnInit, AfterContentInit, AfterViewChecked {
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private modalService: ModalService) {
   }
+
+  control:FormControl;
 
   title = 'conspiracyGenerator';
   personFade = true;
@@ -239,6 +247,21 @@ onReceiveDescriptor(value, category){
   console.log('hitting onReceiveDescriptor',value, category);
   this.userDescriptors.push(value);
   this.toggleData(category)
+}
+
+mapNouns(){
+  this.allNouns=this.allNouns.map((ele)=>ele+'\n').join('');
+  console.log(this.allNouns);
+}
+
+//MODALS
+
+openModal(id: string) {
+  this.modalService.open(id);
+}
+
+closeModal(id: string) {
+  this.modalService.close(id);
 }
 
 }
