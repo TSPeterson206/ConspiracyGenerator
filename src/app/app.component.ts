@@ -250,7 +250,7 @@ onReceiveDescriptor(value, category){
 }
 
 mapNouns(){
-  this.allNouns=this.allNouns.map((ele)=>ele+'\n').join('');
+  // this.allNouns=this.allNouns.map((ele)=>ele+'\n').join('');
   console.log(this.allNouns);
 }
 

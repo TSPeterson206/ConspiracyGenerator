@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule, FormControlDirective, FormGroupDirective } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { ModalModule } from './_modal';
@@ -38,7 +38,7 @@ import { AddAdverbFormComponent } from './add-adverb-form/add-adverb-form.compon
     ModalModule,
     NgbModule.forRoot()
   ],
-  providers: [],
+  providers: [FormControlDirective, FormGroupDirective],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

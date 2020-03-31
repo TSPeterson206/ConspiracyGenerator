@@ -5,13 +5,13 @@
 
   <div class="row threeItemsRow">
 
-    <div class="col-xs-4">
+    <div class="col-xs-4" (click)="openModal('custom-modal-1')">
       <app-person [tempPerson]='tempPerson' [personFade]='personFade' [user]='user'></app-person>
     </div>
-    <div class="col-xs-4">
+    <div class="col-xs-4" (click)="openModal('custom-modal-2')">
       <app-action [tempAction]='tempAction' [actionFade]='actionFade'></app-action>
     </div>
-    <div class="col-xs-4">
+    <div class="col-xs-4" (click)="openModal('custom-modal-3')">
       <app-adverb [tempAdverb]='tempAdverb' [adverbFade]='adverbFade'></app-adverb>
     </div>
   </div>
@@ -19,8 +19,8 @@
     <div class="col-xs-12 buttonsColumn">
       <div class="nounDiv">
 
-          <div name="allNounsLength" [(ngModel)]="allNouns" ngDefaultControl>{{allNouns.length}}</div>
-          <!-- <p>{{allNouns.length}}</p> -->
+          <!-- <div name="allNounsLength" [(ngModel)]="allNouns" ngDefaultControl>{{allNouns.length}}</div> -->
+          <p>{{allNouns.length}}</p>
           <!-- <span>{{allNouns.length}}</span> -->
 
         <!-- <div>{{allNouns.length}}</div> -->
@@ -54,17 +54,20 @@
           >
         </div>
         <!-- ADD NOUN COLLAPSE -->
+        <!-- <app-add-person-form
+        [user]='user'
+        (formOut)="onReceiveNoun($event, 'nouns')"
+        ></app-add-person-form> -->
         <app-add-person-form
         [user]='user'
-        [(ngModel)]='allNouns'
         (formOut)="onReceiveNoun($event, 'nouns')"
         ></app-add-person-form>
       </div>
 
       <div class="actionDiv">
 
-          <div name="allVerbsLength"  [(ngModel)]="allVerbs" ngDefaultControl>{{allVerbs.length}}</div>
-
+          <!-- <div name="allVerbsLength"  [(ngModel)]="allVerbs" ngDefaultControl>{{allVerbs.length}}</div> -->
+<p>{{allVerbs.length}}</p>
         <button class='btn btn-warning' (click)="generateAction()">Generate Verb</button>
 
         <div class="toggleDiv">
@@ -95,7 +98,6 @@
         </div>
         <app-add-verb-form
         [user]='user'
-        [(ngModel)]='allVerbs'
         (formOut)="onReceiveVerb($event,'verbs')"
         ></app-add-verb-form>
       </div>
@@ -103,8 +105,8 @@
       
       <div class="descriptorDiv">
 
-          <div name="allDescriptorsLength" [(ngModel)]="allDescriptors" ngDefaultControl>{{allDescriptors.length}}</div>
-
+          <!-- <div name="allDescriptorsLength" [(ngModel)]="allDescriptors" ngDefaultControl>{{allDescriptors.length}}</div> -->
+<div>{{allDescriptors.length}}</div>
         <button class='btn btn-success' (click)="generateAdverb()">Generate Descriptor</button>
         <div class="toggleDiv">
           <label>Preloaded Descriptors</label>
@@ -134,7 +136,6 @@
         </div>
         <app-add-adverb-form
         [user]='user'
-        [(ngModel)]='allDescriptors'
         (formOut)="onReceiveDescriptor($event,'descriptors')"
         ></app-add-adverb-form>
       </div>
@@ -148,30 +149,41 @@
   </div>
 
   <div>
-    <h1>Home</h1>
-    <p>{{bodyText}}</p>
-    <button (click)="openModal('custom-modal-1')">Open Modal 1</button>
-    <button (click)="openModal('custom-modal-2')">Open Modal 2</button>
-    <button (click)="mapNouns(); openModal('custom-modal-3')">Open Modal 3</button>
+    <!-- <button (click)="mapNouns(); openModal('custom-modal-3')">Open Modal 3</button> -->
 
 </div>
 
 <jw-modal id="custom-modal-1">
-    <h1>A Custom Modal!</h1>
-    <p>Home page text: <input type="text" [(ngModel)]="bodyText" /></p>
-    <button (click)="closeModal('custom-modal-1');">Close</button>
+  <div id="dashboardTop">
+  <h1 class="modalHeader" style="height:100px">Nouns Dashboard</h1>
+  <button class="modalClose" (click)="closeModal('custom-modal-1');">X</button>
+</div>
+<div *ngFor="let noun of allNouns" class="modalLoop">
+  <div class="nounLoop">{{noun}}</div>
+  <button>X</button>
+</div>
 </jw-modal>
 
 <jw-modal id="custom-modal-2">
-    <h1 style="height:250px">A Tall Custom Modal!</h1>
-    <button (click)="closeModal('custom-modal-2');">Close</button>
+    <div id="dashboardTop">
+  <h1 class="modalHeader" style="height:100px">Verbs Dashboard</h1>
+  <button class="modalClose" (click)="closeModal('custom-modal-2');">X</button>
+  </div>
+  <div *ngFor="let verb of allVerbs" class="modalLoop">
+      <div class="verbLoop">{{verb}}</div>
+      <button>X</button>
+    </div>
 </jw-modal>
 
 <jw-modal id="custom-modal-3">
-  <h1 style="height:500px">A Tall Custom Modal!</h1>
-  <p>{{allNouns}}</p>
-
-  <button (click)="closeModal('custom-modal-3');">Close</button>
+  <div id="dashboardTop">
+    <h1 class="modalHeader" style="height:100px">Descriptors Dashboard</h1>
+    <button class="modalClose" (click)="closeModal('custom-modal-3');">X</button>
+  </div>
+  <div *ngFor="let descriptor of allDescriptors" class="modalLoop">
+      <div class="descriptorLoop">{{descriptor}}</div>
+      <button>X</button>
+    </div>
 </jw-modal>
 
 </div>

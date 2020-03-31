@@ -1,8 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { FormBuilder, FormControl } from '@angular/forms';
-import {
-  HttpClient
-} from '@angular/common/http';
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+
+import {NgForm} from '@angular/forms';
 
 
 @Component({
@@ -12,24 +12,15 @@ import {
 })
 export class AddPersonFormComponent implements OnInit {
 
-  @Input() user:any;
-
-  formPayload:any;
-  addNounHolder:any;
-  allNouns:any;
-
-  control: FormControl;
-
-  @Output() formOut: EventEmitter<any> = new EventEmitter();
-
   constructor(
-    private formBuilder: FormBuilder,
     private http: HttpClient
   ) {
-    this.formPayload = this.formBuilder.group({
-      addNoun:''
-    });
   }
+
+  @Input() user:any;
+  addNounHolder:any;
+  @Input() allNouns:any;
+  @Output() formOut: EventEmitter<any> = new EventEmitter();
 
   ngOnInit() {
   }
@@ -39,7 +30,7 @@ export class AddPersonFormComponent implements OnInit {
     console.log('addnoun content',this.addNounHolder)
   }
 
-  addNounFinal(){
+  addNounFinal(value){
     console.log('hitting addnoun', this.user,this.addNounHolder);
     this.http.post(`http://localhost:8000/nouns/${this.user[0].id}`,{user_id:`${this.user[0].id}`,content:this.addNounHolder})
     .subscribe(
@@ -49,7 +40,6 @@ export class AddPersonFormComponent implements OnInit {
       error  => {console.log("Error", error);}
     )
     this.formOut.emit(this.addNounHolder);
-    this.formPayload.reset();
+    // this.nounForm.reset();
   }
-
 }

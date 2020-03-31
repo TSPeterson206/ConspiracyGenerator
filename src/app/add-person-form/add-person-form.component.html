@@ -1,13 +1,13 @@
-<p>
+<div>
   <button type="button" class="btn btn-outline-primary btn-success" (click)="isCollapsed = !isCollapsed"
           [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
     Add Noun
   </button>
-</p>
+</div>
 <div id="collapseExample" [ngbCollapse]="!isCollapsed">
-  <form [formGroup]="formPayload" (ngSubmit)="addNounFinal(formPayload.value); isCollapsed = !isCollapsed">
-    <label for="addNoun"></label>
-    <input class="addNoun" (keyup)="addNoun($event)" type="text" formControlName="addNoun" name="addNoun" [formControl]="control" required>
-    <button type="submit">+</button>
-  </form>
+
+<form #f="ngForm" (ngSubmit)="addNounFinal(f); isCollapsed = !isCollapsed" novalidate>
+  <input name="first" [(ngModel)]="addNounHolder" required #first="ngModel">
+  <button>Submit</button>
+</form>
 </div>

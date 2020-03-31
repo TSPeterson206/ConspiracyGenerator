@@ -1,13 +1,13 @@
-<p>
+<div>
   <button type="button" class="btn btn-outline-primary btn-success" (click)="isCollapsed = !isCollapsed"
           [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
     Add Verb
   </button>
-</p>
+</div>
 <div id="collapseExample" [ngbCollapse]="!isCollapsed">
-  <form  class="form-control" [formGroup]="formPayload" (ngSubmit)="addVerbFinal(formPayload.value);isCollapsed = !isCollapsed">
-    <label for="addVerb"></label>
-    <input class="addVerb" (keyup)="addVerb($event)" type="text" formControlName="addVerb" name="addVerb" required>
-    <button type="submit">+</button>
-  </form>
+
+<form #f="ngForm" (ngSubmit)="addVerbFinal(f); isCollapsed = !isCollapsed" novalidate>
+  <input name="second" [(ngModel)]="addVerbHolder" required #first="ngModel">
+  <button>Submit</button>
+</form>
 </div>
