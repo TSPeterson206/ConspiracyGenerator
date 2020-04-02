@@ -158,9 +158,9 @@
   <h1 class="modalHeader" style="height:100px">Nouns Dashboard</h1>
   <button class="modalClose" (click)="closeModal('custom-modal-1');">X</button>
 </div>
-<div *ngFor="let noun of allNouns" class="modalLoop">
-  <div class="nounLoop">{{noun}}</div>
-  <button>X</button>
+<div *ngFor="let noun of userNounsHolder" class="modalLoop">
+  <div class="nounLoop">{{noun.content}}</div>
+  <button (click)="delete(noun.id)">X</button>
 </div>
 </jw-modal>
 

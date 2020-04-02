@@ -188,7 +188,7 @@ export class AppComponent implements OnInit, AfterContentInit, AfterViewChecked 
 
   toggleData(value) {
 if(value==='nouns'){
-  console.log('hitting toggledata nouns');
+  console.log('hitting toggledata nouns before', this.userNouns);
     let nounpre=[];
     let nounuser=[];
     let nounalluser=[];
@@ -197,6 +197,8 @@ if(value==='nouns'){
     this.nounBooleans[1] ? nounuser = this.userNouns:null;
     this.nounBooleans[2] ? nounalluser = this.onlyUserNouns : null;
     this.allNouns = nounpre.concat(nounuser).concat(nounalluser);
+    console.log('hitting toggledata nouns after', this.userNouns);
+
 }
 
 if(value==='verbs'){
@@ -262,6 +264,16 @@ openModal(id: string) {
 
 closeModal(id: string) {
   this.modalService.close(id);
+}
+
+delete(idNum){
+this.http.delete(`http://localhost:8000/nouns/${idNum}`).pipe(
+  concatMap(user => this.http.get(`http://localhost:8000/nouns/${this.user[0].id}`)),
+  tap(result => this.userNounsHolder = result)).subscribe(
+    this.userNouns = this.userNounsHolder.map(noun => noun.content)
+  )
+  // console.log('usernouns',this.userNouns, this.allNouns)
+  this.toggleData('nouns')
 }
 
 }
