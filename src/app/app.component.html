@@ -160,7 +160,7 @@
 </div>
 <div *ngFor="let noun of userNounsHolder" class="modalLoop">
   <div class="nounLoop">{{noun.content}}</div>
-  <button (click)="delete(noun.id)">X</button>
+  <button (click)="delete(noun.id,'nouns')">X</button>
 </div>
 </jw-modal>
 
@@ -169,9 +169,9 @@
   <h1 class="modalHeader" style="height:100px">Verbs Dashboard</h1>
   <button class="modalClose" (click)="closeModal('custom-modal-2');">X</button>
   </div>
-  <div *ngFor="let verb of allVerbs" class="modalLoop">
-      <div class="verbLoop">{{verb}}</div>
-      <button>X</button>
+  <div *ngFor="let verb of userVerbsHolder" class="modalLoop">
+      <div class="verbLoop">{{verb.content}}</div>
+      <button (click)="delete(noun.id,'verbs')">X</button>
     </div>
 </jw-modal>
 
@@ -180,9 +180,9 @@
     <h1 class="modalHeader" style="height:100px">Descriptors Dashboard</h1>
     <button class="modalClose" (click)="closeModal('custom-modal-3');">X</button>
   </div>
-  <div *ngFor="let descriptor of allDescriptors" class="modalLoop">
-      <div class="descriptorLoop">{{descriptor}}</div>
-      <button>X</button>
+  <div *ngFor="let descriptor of userDescriptorsHolder" class="modalLoop">
+      <div class="descriptorLoop">{{descriptor.content}}</div>
+      <button (click)="delete(noun.id,'descriptors')">X</button>
     </div>
 </jw-modal>
 

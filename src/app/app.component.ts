@@ -266,8 +266,8 @@ closeModal(id: string) {
   this.modalService.close(id);
 }
 
-delete(idNum){
-this.http.delete(`http://localhost:8000/nouns/${idNum}`).pipe(
+delete(idNum,type){
+this.http.delete(`http://localhost:8000/${type}/${idNum}`).pipe(
   concatMap(user => this.http.get(`http://localhost:8000/nouns/${this.user[0].id}`)),
   tap(result => this.userNounsHolder = result)).subscribe(
     this.userNouns = this.userNounsHolder.map(noun => noun.content)
