@@ -202,7 +202,7 @@ if(value==='nouns'){
 }
 
 if(value==='verbs'){
-  console.log('hitting toggledata verbs');
+  console.log('hitting toggledata verbs',this.userActions);
 
   let verbpre=[];
   let verbuser=[];
@@ -266,14 +266,44 @@ closeModal(id: string) {
   this.modalService.close(id);
 }
 
-delete(idNum,type){
-this.http.delete(`http://localhost:8000/${type}/${idNum}`).pipe(
-  concatMap(user => this.http.get(`http://localhost:8000/nouns/${this.user[0].id}`)),
-  tap(result => this.userNounsHolder = result)).subscribe(
-    this.userNouns = this.userNounsHolder.map(noun => noun.content)
-  )
-  // console.log('usernouns',this.userNouns, this.allNouns)
-  this.toggleData('nouns')
+// delete(idNum,type){
+//   console.log('before',this.userNouns,this.userNounsHolder, this.allNouns);
+
+//   console.log(idNum, type)
+// this.http.delete(`http://localhost:8000/${type}/${idNum}`).pipe(
+//   concatMap(user => this.http.get(`http://localhost:8000/${type}/${this.user[0].id}`)),
+//   tap(result => this.userNounsHolder = result)).subscribe(
+//     this.userNounsHolder = this.userNounsHolder.map(noun => noun.content)
+//   )
+//   console.log('afterwards',this.userNouns,this.userNounsHolder,this.allNouns);
+//   this.toggleData(type)
+// }
+
+async delete(idNum,type){
+  console.log('before',this.userNouns, this.userNounsHolder, this.allNouns)
+
+
+  console.log(idNum, type)
+  await this.http.delete(`http://localhost:8000/${type}/${idNum}`).toPromise()
+if(type==='nouns'){
+  this.userNouns= await this.http.get(`http://localhost:8000/${type}/${this.user[0].id}`).toPromise()
+  this.userNounsHolder=this.userNouns;
+  this.userNouns=this.userNouns.map(ele=>ele.content);
+
+}
+if(type==='verbs'){
+  this.userActions = await this.http.get(`http://localhost:8000/${type}/${this.user[0].id}`).toPromise()
+this.userVerbsHolder=this.userActions;
+  this.userActions=this.userActions.map(ele=>ele.content);
+}
+if(type==='descriptors'){
+  this.userDescriptors = await this.http.get(`http://localhost:8000/${type}/${this.user[0].id}`).toPromise()
+this.userDescriptorsHolder=this.userDescriptors;
+  this.userDescriptors=this.userDescriptors.map(ele=>ele.content);
+}
+
+  console.log('afterwards',this.userNouns,this.userNounsHolder,this.allNouns);
+  this.toggleData(type)
 }
 
 }

@@ -67,7 +67,7 @@
       <div class="actionDiv">
 
           <!-- <div name="allVerbsLength"  [(ngModel)]="allVerbs" ngDefaultControl>{{allVerbs.length}}</div> -->
-<p>{{allVerbs.length}}</p>
+        <p>{{allVerbs.length}}</p>
         <button class='btn btn-warning' (click)="generateAction()">Generate Verb</button>
 
         <div class="toggleDiv">
@@ -156,7 +156,7 @@
 <jw-modal id="custom-modal-1">
   <div id="dashboardTop">
   <h1 class="modalHeader" style="height:100px">Nouns Dashboard</h1>
-  <button class="modalClose" (click)="closeModal('custom-modal-1');">X</button>
+  <button class="modalClose" (click)="closeModal('custom-modal-1');toggleData('nouns')">X</button>
 </div>
 <div *ngFor="let noun of userNounsHolder" class="modalLoop">
   <div class="nounLoop">{{noun.content}}</div>
@@ -171,7 +171,7 @@
   </div>
   <div *ngFor="let verb of userVerbsHolder" class="modalLoop">
       <div class="verbLoop">{{verb.content}}</div>
-      <button (click)="delete(noun.id,'verbs')">X</button>
+      <button (click)="delete(verb.id,'verbs')">X</button>
     </div>
 </jw-modal>
 
@@ -182,7 +182,7 @@
   </div>
   <div *ngFor="let descriptor of userDescriptorsHolder" class="modalLoop">
       <div class="descriptorLoop">{{descriptor.content}}</div>
-      <button (click)="delete(noun.id,'descriptors')">X</button>
+      <button (click)="delete(descriptor.id,'descriptors')">X</button>
     </div>
 </jw-modal>
 
