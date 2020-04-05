@@ -280,10 +280,6 @@ closeModal(id: string) {
 // }
 
 async delete(idNum,type){
-  console.log('before',this.userNouns, this.userNounsHolder, this.allNouns)
-
-
-  console.log(idNum, type)
   await this.http.delete(`http://localhost:8000/${type}/${idNum}`).toPromise()
 if(type==='nouns'){
   this.userNouns= await this.http.get(`http://localhost:8000/${type}/${this.user[0].id}`).toPromise()

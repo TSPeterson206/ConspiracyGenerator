@@ -4,6 +4,10 @@ import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule, FormControlDirective, FormGroupDirective } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
+import { routing } from './app.routing';
+
+
 
 import { ModalModule } from './_modal';
 
@@ -31,11 +35,13 @@ import { AddAdverbFormComponent } from './add-adverb-form/add-adverb-form.compon
   ],
   imports: [
     BrowserModule,
+    routing,
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
     ModalModule,
+    RouterModule,
     NgbModule.forRoot()
   ],
   providers: [FormControlDirective, FormGroupDirective],
