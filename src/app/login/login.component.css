@@ -1,0 +1,12 @@
+.loginContainer{
+  display:flex;
+  height:70vh;
+}
+
+.loginRow{
+  margin:auto;
+}
+
+.loginForm{
+width:100%;
+}

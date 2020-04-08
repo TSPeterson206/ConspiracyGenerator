@@ -1,0 +1,186 @@
+<div class="container">
+
+    <div class="row threeItemsRow">
+  
+      <div class="col-xs-4" (click)="openModal('custom-modal-1')">
+        <app-person [tempPerson]='tempPerson' [personFade]='personFade' [user]='user'></app-person>
+      </div>
+      <div class="col-xs-4" (click)="openModal('custom-modal-2')">
+        <app-action [tempAction]='tempAction' [actionFade]='actionFade'></app-action>
+      </div>
+      <div class="col-xs-4" (click)="openModal('custom-modal-3')">
+        <app-adverb [tempAdverb]='tempAdverb' [adverbFade]='adverbFade'></app-adverb>
+      </div>
+    </div>
+    <div class="row buttonsRow">
+      <div class="col-xs-12 buttonsColumn">
+        <div class="nounDiv">
+  
+            <!-- <div name="allNounsLength" [(ngModel)]="allNouns" ngDefaultControl>{{allNouns.length}}</div> -->
+            <p>{{allNouns.length}}</p>
+            <!-- <span>{{allNouns.length}}</span> -->
+  
+          <!-- <div>{{allNouns.length}}</div> -->
+  
+          <button class='btn btn-danger' (click)="generatePerson()">Generate Noun</button>
+  
+          <div class="toggleDiv">
+            <label>Preloaded Nouns</label>
+            <input id="preloadedNounsCheck" 
+            type="checkbox" 
+            [checked]="nounBooleans[0]"
+            (change)="nounBooleans[0] = !nounBooleans[0]; toggleData('nouns')"
+            >
+          </div>
+  
+          <div class="toggleDiv">
+            <label>Your Nouns</label>
+            <input id="yourNounsCheck" 
+            type="checkbox" 
+            [checked]="nounBooleans[1]"
+            (change)="nounBooleans[1] = !nounBooleans[1]; toggleData('nouns')"
+            >
+          </div>
+  
+          <div class="toggleDiv">
+            <label>All User Nouns</label>
+            <input id="allUserNounsCheck" 
+            type="checkbox" 
+            [checked]="nounBooleans[2]"
+            (change)="nounBooleans[2] =!nounBooleans[2]; toggleData('nouns')"
+            >
+          </div>
+          <!-- ADD NOUN COLLAPSE -->
+          <!-- <app-add-person-form
+          [user]='user'
+          (formOut)="onReceiveNoun($event, 'nouns')"
+          ></app-add-person-form> -->
+          <app-add-person-form
+          [user]='user'
+          (formOut)="onReceiveNoun($event, 'nouns')"
+          ></app-add-person-form>
+        </div>
+  
+        <div class="actionDiv">
+  
+            <!-- <div name="allVerbsLength"  [(ngModel)]="allVerbs" ngDefaultControl>{{allVerbs.length}}</div> -->
+          <p>{{allVerbs.length}}</p>
+          <button class='btn btn-warning' (click)="generateAction()">Generate Verb</button>
+  
+          <div class="toggleDiv">
+            <label>Preloaded Verbs Only</label>
+            <input id="checkbox"
+             type="checkbox"
+             [checked]="verbBooleans[0]"
+            (change)="verbBooleans[0] = !verbBooleans[0]; toggleData('verbs')"
+              >
+          </div>
+  
+          <div class="toggleDiv">
+            <label>Just Your Verbs</label>
+            <input id="checkbox"
+             type="checkbox"
+             [checked]="verbBooleans[1]"
+             (change)="verbBooleans[1] = !verbBooleans[1]; toggleData('verbs')"
+              >
+          </div>
+  
+          <div class="toggleDiv">
+            <label>Just User Verbs</label>
+            <input id="checkbox"
+             type="checkbox"
+             [checked]="verbBooleans[2]"
+             (change)="verbBooleans[2] = !verbBooleans[2]; toggleData('verbs')"
+              >
+          </div>
+          <app-add-verb-form
+          [user]='user'
+          (formOut)="onReceiveVerb($event,'verbs')"
+          ></app-add-verb-form>
+        </div>
+          
+        
+        <div class="descriptorDiv">
+  
+            <!-- <div name="allDescriptorsLength" [(ngModel)]="allDescriptors" ngDefaultControl>{{allDescriptors.length}}</div> -->
+  <div>{{allDescriptors.length}}</div>
+          <button class='btn btn-success' (click)="generateAdverb()">Generate Descriptor</button>
+          <div class="toggleDiv">
+            <label>Preloaded Descriptors</label>
+            <input id="checkbox"
+             type="checkbox"
+             [checked]="descriptorBooleans[0]" 
+             (change)="descriptorBooleans[0] = !descriptorBooleans[0] ;toggleData('descriptors')"
+             >
+          </div>
+  
+          <div class="toggleDiv">
+            <label>Just Your Descriptors</label>
+            <input id="checkbox"
+             type="checkbox"
+             [checked]="descriptorBooleans[1]" 
+             (change)="descriptorBooleans[1] = !descriptorBooleans[1] ;toggleData('descriptors')"
+              >
+          </div>
+  
+          <div class="toggleDiv">
+            <label>Just User Descriptors</label>
+            <input id="checkbox"
+             type="checkbox"
+             [checked]="descriptorBooleans[2]" 
+             (change)="descriptorBooleans[2] = !descriptorBooleans[2] ;toggleData('descriptors')"
+              >
+          </div>
+          <app-add-adverb-form
+          [user]='user'
+          (formOut)="onReceiveDescriptor($event,'descriptors')"
+          ></app-add-adverb-form>
+        </div>
+          
+      </div>
+    </div>
+    <div class="row generateNewRow">
+      <div class="col-xs-12">
+        <button class="btn btn-primary" (click)="generateTheory()">Randomize!</button>
+      </div>
+    </div>
+  
+    <div>
+      <!-- <button (click)="mapNouns(); openModal('custom-modal-3')">Open Modal 3</button> -->
+  
+  </div>
+  
+  <jw-modal id="custom-modal-1">
+    <div id="dashboardTop">
+    <h1 class="modalHeader" style="height:100px">Nouns Dashboard</h1>
+    <button class="modalClose" (click)="closeModal('custom-modal-1')">X</button>
+  </div>
+  <div *ngFor="let noun of userNounsHolder" class="modalLoop">
+    <div class="nounLoop" (click)="this.tempPerson=noun.content;style='color:blue'">{{noun.content}}</div>
+    <button (click)="delete(noun.id,'nouns')">X</button>
+  </div>
+  </jw-modal>
+  
+  <jw-modal id="custom-modal-2">
+      <div id="dashboardTop">
+    <h1 class="modalHeader" style="height:100px">Verbs Dashboard</h1>
+    <button class="modalClose" (click)="closeModal('custom-modal-2');">X</button>
+    </div>
+    <div *ngFor="let verb of userVerbsHolder" class="modalLoop">
+        <div class="verbLoop">{{verb.content}}</div>
+        <button (click)="delete(verb.id,'verbs')">X</button>
+      </div>
+  </jw-modal>
+  
+  <jw-modal id="custom-modal-3">
+    <div id="dashboardTop">
+      <h1 class="modalHeader" style="height:100px">Descriptors Dashboard</h1>
+      <button class="modalClose" (click)="closeModal('custom-modal-3');">X</button>
+    </div>
+    <div *ngFor="let descriptor of userDescriptorsHolder" class="modalLoop">
+        <div class="descriptorLoop">{{descriptor.content}}</div>
+        <button (click)="delete(descriptor.id,'descriptors')">X</button>
+      </div>
+  </jw-modal>
+  
+  </div>

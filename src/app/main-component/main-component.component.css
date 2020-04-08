@@ -1,0 +1,97 @@
+.threeItemsRow{
+  height:30vh;
+}
+
+.buttonsRow{
+  height:20vh;
+  /* display:flex; */
+  /* justify-content:space-evenly; */
+}
+.generateNewRow{
+height:5vh;
+}
+
+.buttonsColumn{
+  display:flex;
+  justify-content:space-around;
+}
+
+.itemText{
+  font-size:35px;
+  transition: 1s linear all;  
+  opacity: 1;
+}
+
+.container{
+  /* padding-top:30vh; */
+}
+
+.jumbotron{
+  height:30vh;
+  text-align:center;
+}
+
+.jumboText{
+  font-size:10em;
+  font-family: 'Shadows Into Light', cursive;
+}
+
+.nounDiv,.actionDiv,.descriptorDiv {
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  width:30%;
+}
+
+.toggleDiv{
+  display:flex;
+}
+
+#checkbox{
+  margin-left:10px;
+}
+
+.col-xs-4{
+  border:2px solid;
+  padding:10px;
+  height:27vh;
+  display:flex;
+  align-items:center;
+}
+
+/* Modals */
+
+#dashboardTop{
+  display:flex;
+}
+
+.modalHeader{
+margin:auto;
+}
+
+.modalClose{
+position:relative;
+height:30px;
+}
+
+.modalLoop{
+  display:flex;
+  /* flex-direction:row; */
+  
+}
+
+.nounLoop{
+  flex-direction:row;
+  flex-wrap:wrap;
+}
+/* TEXT */
+
+@media (max-width:1200px){
+  .jumboText{
+    font-size:90px;
+  }
+
+  .jumbotron{
+    padding-top:0px;
+  }
+}
