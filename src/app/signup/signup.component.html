@@ -30,29 +30,36 @@
   </div>
 </div> -->
 
-<div class="grid-container">
-  <div class="grid-x">
-    <div class="small-12 medium-10 medium-offset-1 large-8 large-offset-2 cell">
-      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+<div class="grid-container signupContainer">
+  <div class="signupRow">
+    <div class="col-xs-12 signupCols">
+      <form class="signupForm" [formGroup]="form" (ngSubmit)="onSubmit()">
         <h2>Sign Up</h2>
         <p>Please enter your details</p>
-        <label class="full-width-input">
-          Email
-          <input type="text" placeholder="Email" formControlName="email" required>
-        </label>
-        <label class="full-width-input">
-          Name
-          <input type="text" placeholder="Name" formControlName="name" required>
-        </label>
-        <label class="full-width-input">
-          Password
-          <input type="password" placeholder="Password" formControlName="password" required>
-        </label>
-        <button class="button">Register</button>
+        <div class="form-group">
+          <label class="form-check-label" for="email">
+            Email
+            <input class="signupInput" type="text" placeholder="Email" formControlName="email" required>
+          </label>
+        </div>
+        <div class="form-group">
+          <label class="form-check-label" for="name">
+            Name
+            <input class="signupInput" type="text" placeholder="Name" formControlName="username" required>
+          </label>
+        </div>
+        <div class="form-group">
+          <label class="form-check-label" for="password">
+            Password
+            <input class="signupInput" type="password" placeholder="Password" formControlName="password" required>
+          </label>
+        </div>
+        <button class="btn btn-warning">Register</button>
+        <div class="signup-link">
+            Already registered? <a routerLink="/login">Login Here!</a>
+          </div>
       </form>
-      <div class="login-link">
-        Already registered? <a routerLink="/login">Login Here!</a>
-      </div>
+      
     </div>
   </div>
 </div>

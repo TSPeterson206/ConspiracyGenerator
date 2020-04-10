@@ -1,19 +1,9 @@
 <div class="jumbotron">
+  <div class="jumbotronLinks">
+    <a (click)="onLogout()"><span>Logout</span></a>
+  </div>
   <p class="jumboText">Conspiracy Generator</p>
 </div>
-<a (click)="onLogout()">Logout</a>
-<!--  -->
-<!-- <div class="top-bar" *ngIf="authService.isLoggedIn | async as isLoggedIn">
-  <div class="top-bar-left">
-    <a class="logo" routerLink="/">MyApp</a>
-  </div>
-  <div class="top-bar-right show-for-medium">
-    <ul class="menu">
-      <li><a  routerLink="/profile">Profile</a></li>
-      <li><a (click)="onLogout()">Logout</a></li>
-    </ul>
-  </div>
-</div> -->
-<!--  -->
+
 <router-outlet></router-outlet>
 

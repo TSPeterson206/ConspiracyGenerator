@@ -1,12 +1,42 @@
 .loginContainer{
   display:flex;
-  height:70vh;
+  height:65vh;
+  /* justify-content: center; */
 }
 
 .loginRow{
   margin:auto;
 }
 
+h2,p{
+text-align:center;
+}
+
+.loginCols{
+  padding-top:15px;
+  padding-bottom:15px;
+  border:2px darkgreen solid;
+  border-radius:25px;
+}
+
 .loginForm{
 width:100%;
+display:flex;
+flex-direction: column;
+justify-content: center;
+}
+
+.form-group{
+  display:flex;
+  justify-content: center;
+}
+
+.loginInput{
+  border-radius:25px;
+  text-align: center;
+}
+
+.register-link{
+  display:flex;
+  justify-content: space-around;
 }

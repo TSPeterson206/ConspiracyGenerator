@@ -57,6 +57,7 @@ height:5vh;
   height:27vh;
   display:flex;
   align-items:center;
+  border-radius:25px;
 }
 
 /* Modals */

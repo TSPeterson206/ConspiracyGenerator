@@ -24,7 +24,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { AuthService } from './auth.service';
 
 const routes: Routes = [
-  { path: '', component: SignupComponent },
+  { path: '', component: LoginComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: SignupComponent },
   { path: 'profile', component: ProfileComponent },

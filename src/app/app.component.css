@@ -28,12 +28,23 @@ height:5vh;
 
 .jumbotron{
   height:30vh;
-  text-align:center;
+  /* text-align:center; */
+  display:flex;
+  background-image:url('https://www.ancient-origins.net/sites/default/files/field/image/eye-of-Providence.jpg');
+background-size:contain;
 }
 
 .jumboText{
   font-size:10em;
   font-family: 'Shadows Into Light', cursive;
+  margin:auto;
+  color:white;
+}
+
+.jumbotronLinks{
+  position: absolute;
+  top: 10px;
+  right: 5px;
 }
 
 .nounDiv,.actionDiv,.descriptorDiv {

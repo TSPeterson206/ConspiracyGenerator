@@ -18,6 +18,7 @@ export class AuthService {
     if (userData) {
       console.log('Logged in from memory');
       const user = JSON.parse(userData);
+      console.log('userdata',userData)
       this.token = user.token;
       this.server.setLoggedIn(true, this.token);
       this.loggedIn.next(true);
@@ -25,11 +26,14 @@ export class AuthService {
   }
 
   login(user) {
+    console.log('hitting authservice login', user);
     if (user.email !== '' && user.password !== '' ) {
-      return this.server.request('POST', '/login', {
+      return this.server.request('POST', '/users/signup/login', {
+        username:user.username,
         email: user.email,
         password: user.password
       }).subscribe((response: any) => {
+        console.log('response',response)
         if (response.auth === true && response.token !== undefined) {
           this.token = response.token;
           this.server.setLoggedIn(true, this.token);

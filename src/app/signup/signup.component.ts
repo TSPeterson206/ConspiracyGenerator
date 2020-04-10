@@ -39,8 +39,8 @@ export class SignupComponent implements OnInit {
   ngOnInit() {
     this.form = this.fb.group({
       email: ['', Validators.email],
-      name: ['', Validators.required],
-      password: ['', Validators.compose([Validators.required, Validators.minLength(8)])]
+      username: ['', Validators.required],
+      password: ['', Validators.compose([Validators.required, Validators.minLength(3)])]
     },);
   }
 
@@ -52,9 +52,9 @@ export class SignupComponent implements OnInit {
     }
 
     console.log('Form valid');
-    const request = this.server.request('POST', '/register', {
+    const request = this.server.request('POST', '/users/signup/signup', {
       email: this.form.get('email').value,
-      name: this.form.get('name').value,
+      username: this.form.get('username').value,
       password: this.form.get('password').value
     });
 

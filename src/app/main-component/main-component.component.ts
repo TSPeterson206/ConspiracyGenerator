@@ -84,6 +84,8 @@ export class MainComponent implements OnInit, AfterContentInit, AfterViewChecked
   selected:Boolean = false;
 
   ngOnInit() {
+
+    console.log('user is: ', localStorage.getItem('user'))
     //GET USER
     this.http.get('http://localhost:8000/users/2').pipe(
       tap(result => this.user = result),

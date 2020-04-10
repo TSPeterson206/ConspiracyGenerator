@@ -1,0 +1,43 @@
+.signupContainer{
+  display:flex;
+  height:65vh;
+  /* justify-content: center; */
+}
+
+.signupRow{
+  margin:auto;
+}
+
+h2,p{
+text-align:center;
+}
+
+.signupCols{
+  padding-top:15px;
+  padding-bottom:15px;
+  border:2px darkred solid;
+  border-radius:25px;
+}
+
+.signupForm{
+width:100%;
+display:flex;
+flex-direction: column;
+justify-content: center;
+}
+
+.form-group{
+  display:flex;
+  justify-content: center;
+  margin-bottom:15px;
+}
+
+.signupInput{
+  border-radius:25px;
+  text-align: center;
+}
+
+.signup-link{
+  display:flex;
+  justify-content: space-around;
+}
