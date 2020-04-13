@@ -1,13 +1,19 @@
-<div>
-  <button type="button" class="btn btn-outline-primary btn-success" (click)="isCollapsed = !isCollapsed"
-          [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
-    Add Verb
-  </button>
-</div>
-<div id="collapseExample" [ngbCollapse]="!isCollapsed">
+<div class="formDiv">
+  <div class='formDivBox'>
 
-<form #f="ngForm" (ngSubmit)="addVerbFinal(f); isCollapsed = !isCollapsed" novalidate>
-  <input name="second" [(ngModel)]="addVerbHolder" required #first="ngModel">
-  <button>Submit</button>
-</form>
+    <div id="collapseExample" [ngbCollapse]="isCollapsed">
+
+      <form #verbForm="ngForm" (ngSubmit)="addVerbFinal(f); isCollapsed = !isCollapsed" novalidate>
+        <input class="formInput" name="second" [(ngModel)]="addVerbHolder" minlength="5" required #first="ngModel">
+
+        <p for="second">Add a verb to your collection</p>
+        <div class="formButton">
+          <button type="submit" class="btn btn-warning">Submit</button>
+        </div>
+      </form>
+      <!-- <span *ngIf="first.errors?.minlength">
+        Noun must be at least 5 characters long.
+    </span> -->
+    </div>
+  </div>
 </div>

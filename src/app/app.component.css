@@ -27,7 +27,7 @@ height:5vh;
 }
 
 .jumbotron{
-  height:30vh;
+  height:15vh;
   /* text-align:center; */
   display:flex;
   background-image:url('https://www.ancient-origins.net/sites/default/files/field/image/eye-of-Providence.jpg');
@@ -35,7 +35,7 @@ background-size:contain;
 }
 
 .jumboText{
-  font-size:10em;
+  font-size:4em;
   font-family: 'Shadows Into Light', cursive;
   margin:auto;
   color:white;
@@ -99,7 +99,7 @@ height:30px;
 
 @media (max-width:1200px){
   .jumboText{
-    font-size:90px;
+    font-size:3em;
   }
 
   .jumbotron{

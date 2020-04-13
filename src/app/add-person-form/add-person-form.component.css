@@ -1,0 +1,28 @@
+.formDiv{
+  display:flex;
+  justify-content: center;
+  flex-direction:column;
+}
+
+.formDivBox{
+  border: 1px solid;
+  border-radius:25px;
+}
+
+.formDivControl{
+  margin:auto;
+}
+
+.formButton{
+  display:flex;
+  justify-content: center;
+}
+
+.formInput{
+  margin-top:10px;
+  margin-bottom:10px;
+}
+
+.btn{
+  border-radius:25px;
+}

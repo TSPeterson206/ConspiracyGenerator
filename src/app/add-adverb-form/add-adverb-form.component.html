@@ -1,13 +1,22 @@
-<div>
-  <button type="button" class="btn btn-outline-primary btn-success" (click)="isCollapsed = !isCollapsed"
-          [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
-    Add Noun
-  </button>
-</div>
-<div id="collapseExample" [ngbCollapse]="!isCollapsed">
+<div class="formDiv">
+    <div class='formDivBox'>
+  
+      <div id="collapseExample" [ngbCollapse]="isCollapsed">
+  
+        <form #descriptorForm="ngForm" (ngSubmit)="addDescriptorFinal(f); isCollapsed = !isCollapsed" novalidate>
+          <input class="formInput" name="third" [(ngModel)]="addDescriptorHolder" minlength="5" required #first="ngModel">
+  
+          <p for="second">Add a descriptor to your collection</p>
+          <div class="formButton">
+            <button type="submit" class="btn btn-warning">Submit</button>
+          </div>
+        </form>
+        <!-- <span *ngIf="first.errors?.minlength">
+          Noun must be at least 5 characters long.
+      </span> -->
+      </div>
+    </div>
+  </div>
 
-<form #f="ngForm" (ngSubmit)="addDescriptorFinal(f); isCollapsed = !isCollapsed" novalidate>
-  <input name="first" [(ngModel)]="addDescriptorHolder" required #first="ngModel">
-  <button>Submit</button>
-</form>
-</div>
+
+  

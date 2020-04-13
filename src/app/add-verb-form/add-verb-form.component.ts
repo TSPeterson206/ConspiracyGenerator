@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, ViewChild, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 
@@ -20,6 +20,7 @@ export class AddVerbFormComponent implements OnInit {
   @Input() user:any;
   addVerbHolder:any;
   @Output() formOut: EventEmitter<any> = new EventEmitter();
+  @ViewChild('verbForm', {static: false}) formValues;
 
   ngOnInit() {
   }
@@ -39,6 +40,6 @@ export class AddVerbFormComponent implements OnInit {
       error  => {console.log("Error", error);}
     )
     this.formOut.emit(this.addVerbHolder);
-    // this.formPayload.reset();
+    this.formValues.resetForm();
   }
 }

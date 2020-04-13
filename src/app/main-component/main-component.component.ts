@@ -83,11 +83,14 @@ export class MainComponent implements OnInit, AfterContentInit, AfterViewChecked
 
   selected:Boolean = false;
 
+  formSelected:Array<boolean>=[false,false,false];
+
   ngOnInit() {
 
-    console.log('user is: ', localStorage.getItem('user'))
+    const userId = JSON.parse(localStorage.getItem('user')).userId;
     //GET USER
-    this.http.get('http://localhost:8000/users/2').pipe(
+    console.log('userId',userId)
+    this.http.get(`http://localhost:8000/users/${userId}`).pipe(
       tap(result => this.user = result),
       // GET USER NOUNS
       concatMap(user => this.http.get(`http://localhost:8000/nouns/${this.user[0].id}`)),
@@ -239,20 +242,24 @@ onReceiveNoun(value, category){
   console.log('hitting onReceiveNoun',value, category);
   this.userNouns.push(value);
   this.toggleData(category)
+  this.formSelected[0]=!this.formSelected[0];
 }
 
 onReceiveVerb(value, category){
   this.tempAction=value;
   console.log('hitting onReceiveVerb',value, category);
   this.userActions.push(value);
-  this.toggleData(category)
+  this.toggleData(category);
+  this.formSelected[1]=!this.formSelected[1];
 }
 
 onReceiveDescriptor(value, category){
   this.tempAdverb=value;
   console.log('hitting onReceiveDescriptor',value, category);
   this.userDescriptors.push(value);
-  this.toggleData(category)
+  this.toggleData(category);
+  this.formSelected[2]=!this.formSelected[2];
+
 }
 
 mapNouns(){
@@ -262,11 +269,8 @@ mapNouns(){
 
 //MODALS
 
-async openModal(id: string) {
-  this.userNouns= await this.http.get(`http://localhost:8000/nouns/${this.user[0].id}`).toPromise()
-  this.userNounsHolder=this.userNouns;
-  this.userNouns=this.userNouns.map(ele=>ele.content);
-
+async openModal(type:string,id: string) {
+  this.refresh(type)
   this.modalService.open(id);
 }
 
@@ -274,40 +278,43 @@ closeModal(id: string) {
   this.modalService.close(id);
 }
 
-// delete(idNum,type){
-//   console.log('before',this.userNouns,this.userNounsHolder, this.allNouns);
-
-//   console.log(idNum, type)
-// this.http.delete(`http://localhost:8000/${type}/${idNum}`).pipe(
-//   concatMap(user => this.http.get(`http://localhost:8000/${type}/${this.user[0].id}`)),
-//   tap(result => this.userNounsHolder = result)).subscribe(
-//     this.userNounsHolder = this.userNounsHolder.map(noun => noun.content)
-//   )
-//   console.log('afterwards',this.userNouns,this.userNounsHolder,this.allNouns);
-//   this.toggleData(type)
-// }
-
 async delete(idNum,type){
-  await this.http.delete(`http://localhost:8000/${type}/${idNum}`).toPromise()
-if(type==='nouns'){
-  this.userNouns= await this.http.get(`http://localhost:8000/${type}/${this.user[0].id}`).toPromise()
-  this.userNounsHolder=this.userNouns;
-  this.userNouns=this.userNouns.map(ele=>ele.content);
-
-}
-if(type==='verbs'){
-  this.userActions = await this.http.get(`http://localhost:8000/${type}/${this.user[0].id}`).toPromise()
-this.userVerbsHolder=this.userActions;
-  this.userActions=this.userActions.map(ele=>ele.content);
-}
-if(type==='descriptors'){
-  this.userDescriptors = await this.http.get(`http://localhost:8000/${type}/${this.user[0].id}`).toPromise()
-this.userDescriptorsHolder=this.userDescriptors;
-  this.userDescriptors=this.userDescriptors.map(ele=>ele.content);
-}
-
-  console.log('afterwards',this.userNouns,this.userNounsHolder,this.allNouns);
+  await this.http.delete(`http://localhost:8000/${type}/${idNum}`).toPromise();
+  await this.refresh(type)
   this.toggleData(type)
+
+}
+
+async refresh(type){
+  if(type==='nouns'){
+    this.userNouns= await this.http.get(`http://localhost:8000/${type}/${this.user[0].id}`).toPromise()
+    this.userNounsHolder=this.userNouns;
+    this.userNouns=this.userNouns.map(ele=>ele.content);
+  
+  }
+  if(type==='verbs'){
+    this.userActions = await this.http.get(`http://localhost:8000/${type}/${this.user[0].id}`).toPromise()
+  this.userVerbsHolder=this.userActions;
+    this.userActions=this.userActions.map(ele=>ele.content);
+  }
+  if(type==='descriptors'){
+    this.userDescriptors = await this.http.get(`http://localhost:8000/${type}/${this.user[0].id}`).toPromise()
+  this.userDescriptorsHolder=this.userDescriptors;
+    this.userDescriptors=this.userDescriptors.map(ele=>ele.content);
+  }
+  
+}
+
+handleFormSwitch(type){
+  if(type==='nouns'){
+    (this.formSelected[1] || this.formSelected[2]) ? this.formSelected[0]=true : this.formSelected[0] = !this.formSelected[0]; this.formSelected[1]=false; this.formSelected[2]=false;
+    }
+  if(type==='verbs'){
+    (this.formSelected[0] || this.formSelected[2]) ? this.formSelected[1]=true : this.formSelected[1] = !this.formSelected[1]; this.formSelected[0]=false; this.formSelected[2]=false;
+    }
+  if(type==='descriptors'){
+  (this.formSelected[0] || this.formSelected[1]) ? this.formSelected[2]=true : this.formSelected[2] = !this.formSelected[2]; this.formSelected[0]=false; this.formSelected[1]=false;
+  }
 }
 
 }

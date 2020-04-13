@@ -1,5 +1,5 @@
 .threeItemsRow{
-  height:30vh;
+  height:40vh;
 }
 
 .buttonsRow{
@@ -9,6 +9,10 @@
 }
 .generateNewRow{
 height:5vh;
+}
+
+.formsRow{
+  height:15vh;
 }
 
 .buttonsColumn{
@@ -54,10 +58,14 @@ height:5vh;
 .col-xs-4{
   border:2px solid;
   padding:10px;
-  height:27vh;
+  height:40vh;
   display:flex;
   align-items:center;
   border-radius:25px;
+}
+
+.formColumns{
+  display:flex;
 }
 
 /* Modals */
@@ -84,6 +92,16 @@ height:30px;
 .nounLoop{
   flex-direction:row;
   flex-wrap:wrap;
+  font-size:25px;
+}
+
+.btn{
+  border-radius:25px;
+}
+
+/* Marquee */
+.marqueeText{
+  font-size:45px;
 }
 /* TEXT */
 

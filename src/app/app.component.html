@@ -1,9 +1,13 @@
 <div class="jumbotron">
   <div class="jumbotronLinks">
+      <span *ngIf="username">Hello{{username}}!</span>
     <a (click)="onLogout()"><span>Logout</span></a>
   </div>
   <p class="jumboText">Conspiracy Generator</p>
 </div>
+<ng-marquee speed="slow">
+    <mark class="marqueeText">Welcome {{username}}!</mark>
+</ng-marquee>
 
 <router-outlet></router-outlet>
 

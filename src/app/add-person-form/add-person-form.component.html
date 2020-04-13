@@ -1,13 +1,19 @@
-<div>
-  <button type="button" class="btn btn-outline-primary btn-success" (click)="isCollapsed = !isCollapsed"
-          [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
-    Add Noun
-  </button>
-</div>
-<div id="collapseExample" [ngbCollapse]="!isCollapsed">
+<div class="formDiv">
+  <div class='formDivBox'>
 
-<form #f="ngForm" (ngSubmit)="addNounFinal(f); isCollapsed = !isCollapsed" novalidate>
-  <input name="first" [(ngModel)]="addNounHolder" required #first="ngModel">
-  <button>Submit</button>
-</form>
+    <div id="collapseExample" [ngbCollapse]="isCollapsed">
+
+      <form #nounForm="ngForm" (ngSubmit)="addNounFinal(f); isCollapsed = !isCollapsed" novalidate>
+        <input class="formInput" name="first" [(ngModel)]="addNounHolder" minlength="5" required #first="ngModel">
+
+        <p for="first">Add a noun to your collection</p>
+        <div class="formButton">
+          <button type="submit" class="btn btn-warning">Submit</button>
+        </div>
+      </form>
+      <!-- <span *ngIf="first.errors?.minlength">
+    Noun must be at least 5 characters long.
+</span> -->
+    </div>
+  </div>
 </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, ViewChild, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 
@@ -22,6 +22,8 @@ export class AddPersonFormComponent implements OnInit {
   @Input() allNouns:any;
   @Output() formOut: EventEmitter<any> = new EventEmitter();
 
+  @ViewChild('nounForm', {static: false}) formValues;
+
   ngOnInit() {
   }
 
@@ -40,6 +42,5 @@ export class AddPersonFormComponent implements OnInit {
       error  => {console.log("Error", error);}
     )
     this.formOut.emit(this.addNounHolder);
-    // this.nounForm.reset();
-  }
+    this.formValues.resetForm();  }
 }

@@ -20,6 +20,8 @@ import { LoginComponent } from './login/login.component';
 import { MainComponent } from './main-component/main-component.component';
 import { SignupComponent } from './signup/signup.component';
 import { ProfileComponent } from './profile/profile.component';
+import { NgMarqueeModule } from 'ng-marquee';
+
 
 import { AuthService } from './auth.service';
 
@@ -53,6 +55,7 @@ const routes: Routes = [
     BrowserModule,
     // routing,
     BrowserAnimationsModule,
+    NgMarqueeModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,

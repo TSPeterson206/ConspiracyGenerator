@@ -19,7 +19,7 @@ export class ServerService {
   }
 
   request(method: string, route: string, data?: any) {
-    console.log('hitting1', this.loggedIn, this.token);
+    console.log('hitting1', this.loggedIn, this.token, data);
     if (method === 'GET') {
       return this.get(route, data);
     }
